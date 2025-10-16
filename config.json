@@ -1,0 +1,38 @@
+{
+    "environment": "development",
+    "debug": true,
+    "database": {
+        "url": "sqlite:///./chatbot_analytics.db",
+        "echo": false
+    },
+    "model": {
+        "default_model": "bert-base-uncased",
+        "cache_dir": "./models/cache",
+        "max_sequence_length": 512,
+        "batch_size": 16,
+        "device": "auto"
+    },
+    "data": {
+        "dataset_dir": "./Dataset",
+        "processed_data_dir": "./data/processed",
+        "cache_dir": "./data/cache",
+        "validation_split": 0.15,
+        "test_split": 0.15
+    },
+    "api": {
+        "host": "0.0.0.0",
+        "port": 8000,
+        "debug": true,
+        "reload": true
+    },
+    "dashboard": {
+        "host": "0.0.0.0",
+        "port": 8501,
+        "debug": true,
+        "theme": "light"
+    },
+    "logging": {
+        "level": "INFO",
+        "file_path": "./logs/app.log"
+    }
+}
