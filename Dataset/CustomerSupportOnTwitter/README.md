@@ -11,7 +11,8 @@ How to obtain the complete data
 -------------------------------
 1. Create/sign in to a Kaggle account.
 2. Accept the dataset terms on the Kaggle page above.
-3. Use the Kaggle CLI (after configuring your API credentials) to run:
+3. Configure your Kaggle API credentials (either create `~/.kaggle/kaggle.json` with `username` and `key`, or export the `KAGGLE_USERNAME` and `KAGGLE_KEY` environment variables).
+4. Use the Kaggle CLI (already installed in this environment) to run:
 
    kaggle datasets download -d thoughtvector/customer-support-tweets -p Dataset/CustomerSupportOnTwitter
    unzip customer-support-tweets.zip -d Dataset/CustomerSupportOnTwitter
