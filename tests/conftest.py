@@ -4,6 +4,8 @@ import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+from fastapi.testclient import TestClient
+
 from src.repositories.orm import Base
 
 
@@ -33,3 +35,12 @@ def _test_environment(monkeypatch, tmp_path):
 
     Base.metadata.drop_all(bind=test_engine)
     test_engine.dispose()
+
+
+@pytest.fixture()
+def api_client():
+    from src.api.app import create_app
+
+    app = create_app()
+    with TestClient(app) as client:
+        yield client

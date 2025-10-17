@@ -26,7 +26,7 @@ class TrainingRunResponse(BaseModel):
 
 class HyperparameterSearchRequest(BaseModel):
     dataset_type: DatasetType
-    strategy: str = Field("grid", regex="^(grid|random)$")
+    strategy: str = Field("grid", pattern="^(grid|random)$")
     search_space: Dict[str, List[Any]] = Field(..., description="Grid of parameters to explore.")
     num_samples: Optional[int] = Field(None, ge=1, description="Samples for random search.")
     model_id: Optional[str] = Field(None, description="Identifier for persisting the best model.")

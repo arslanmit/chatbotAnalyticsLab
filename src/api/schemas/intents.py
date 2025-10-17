@@ -13,7 +13,7 @@ class IntentQuery(BaseModel):
 
 
 class BatchIntentQuery(BaseModel):
-    texts: List[str] = Field(..., min_items=1, description="Utterances to classify in batch.")
+    texts: List[str] = Field(..., min_length=1, description="Utterances to classify in batch.")
     model_id: str = Field("intent_classifier", description="Model identifier to use for prediction.")
 
 
