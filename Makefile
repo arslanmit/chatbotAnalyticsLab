@@ -68,6 +68,10 @@ train:
 	@echo "Training intent classifier..."
 	$(PYTHON) examples/train_intent_classifier.py
 
+train-quick:
+	@echo "Quick training (1 epoch, CPU-only)..."
+	$(PYTHON) examples/train_intent_classifier_quick.py
+
 test:
 	@echo "Testing intent classifier..."
 	$(PYTHON) examples/test_intent_classifier_basic.py
@@ -105,5 +109,8 @@ clean-models:
 quick-start: demo train test
 	@echo "Quick start complete!"
 
-full-pipeline: demo train verify batch
+full-pipeline: demo train-quick test
 	@echo "Full pipeline complete!"
+
+full-pipeline-complete: demo train verify batch
+	@echo "Complete pipeline with full training done!"

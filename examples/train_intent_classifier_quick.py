@@ -79,7 +79,7 @@ def main():
     
     # Initialize and train classifier
     logger.info("Initializing intent classifier (CPU-only)...")
-    classifier = IntentClassifier(model_name=config.model_name, device="cpu")
+    classifier = IntentClassifier(model_name=config.model_name)
     
     logger.info("Starting quick training (1 epoch)...")
     result = classifier.train(train_data, val_data, config)
