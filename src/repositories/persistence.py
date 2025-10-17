@@ -37,7 +37,10 @@ class ExperimentRepository:
             query = session.query(ExperimentRun).order_by(ExperimentRun.created_at.desc())
             if limit:
                 query = query.limit(limit)
-            return query.all()
+            runs = query.all()
+            for run in runs:
+                session.expunge(run)
+            return runs
 
     def _upsert(self, session: Session, summary: Dict[str, Any]) -> ExperimentRun:
         run_id = summary.get("run_id")
@@ -122,11 +125,14 @@ class DatasetRepository:
 
     def get(self, name: str, dataset_type: str) -> Optional[DatasetRecord]:
         with get_session() as session:
-            return (
+            record = (
                 session.query(DatasetRecord)
                 .filter_by(name=name, dataset_type=dataset_type)
                 .one_or_none()
             )
+            if record is not None:
+                session.expunge(record)
+            return record
 
 
 class ConversationRepository:

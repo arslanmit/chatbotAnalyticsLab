@@ -38,9 +38,9 @@ class BackupManager:
 
         backup_path = dataset_dir / f"{timestamp}.{self.format}"
         if self.format == "json":
-            self._backup_json(conversations, backup_path)
+            _backup_json(conversations, backup_path)
         elif self.format == "parquet":
-            self._backup_parquet(conversations, backup_path)
+            _backup_parquet(conversations, backup_path)
         else:
             raise ValueError(f"Unsupported backup format: {self.format}")
 
