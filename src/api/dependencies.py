@@ -2,8 +2,13 @@
 Shared dependency providers for the API layer.
 """
 
-from functools import lru_cache
+from __future__ import annotations
 
+from functools import lru_cache
+from typing import Dict
+
+from src.api.cache import SimpleResponseCache
+from src.api.monitoring import RequestMetricsCollector
 from src.repositories.model_repository import ModelRepository
 from src.services import (
     DataPreprocessor,
@@ -21,7 +26,9 @@ from src.utils.logging import get_logger
 
 logger = get_logger(__name__)
 
-_classifier_cache: dict[str, IntentClassifier] = {}
+_classifier_cache: Dict[str, IntentClassifier] = {}
+_metrics_collector = RequestMetricsCollector()
+_response_cache = SimpleResponseCache(ttl_seconds=300)
 
 
 @lru_cache()
@@ -52,6 +59,16 @@ def get_sentiment_analyzer() -> SentimentAnalyzer:
 @lru_cache()
 def get_performance_analyzer() -> PerformanceAnalyzer:
     return PerformanceAnalyzer()
+
+
+@lru_cache()
+def get_response_cache() -> SimpleResponseCache:
+    return _response_cache
+
+
+@lru_cache()
+def get_metrics_collector() -> RequestMetricsCollector:
+    return _metrics_collector
 
 
 def build_training_pipeline(config: TrainingPipelineConfig, training: TrainingConfig) -> TrainingPipeline:

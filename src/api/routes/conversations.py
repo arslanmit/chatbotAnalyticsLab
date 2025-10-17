@@ -12,6 +12,7 @@ from src.api.dependencies import (
     get_conversation_flow_analyzer,
     get_sentiment_analyzer,
     get_performance_analyzer,
+    get_response_cache,
 )
 from src.api.schemas.conversations import (
     ConversationAnalysisRequest,
@@ -80,6 +81,7 @@ async def conversation_trends(
     request: ConversationTrendRequest,
     preprocessor=Depends(get_data_preprocessor),
     sentiment_analyzer=Depends(get_sentiment_analyzer),
+    cache=Depends(get_response_cache),
 ) -> ConversationTrendResponse:
     """
     Generate sentiment trends over time for the requested dataset subset.
@@ -89,15 +91,32 @@ async def conversation_trends(
     if request.preprocess:
         dataset = preprocessor.preprocess_dataset(dataset, normalize=request.normalize_text)
 
+    cache_key = ";".join(
+        [
+            "trend",
+            request.dataset_type.value,
+            request.dataset_path or "default",
+            request.granularity,
+            str(request.preprocess),
+            str(request.normalize_text),
+        ]
+    )
+
+    cached = cache.get(cache_key)
+    if cached:
+        return ConversationTrendResponse(**cached)
+
     trend = sentiment_analyzer.calculate_sentiment_trend(
         dataset.conversations,
         granularity=request.granularity,
     )
 
-    return ConversationTrendResponse(
+    response = ConversationTrendResponse(
         granularity=trend["granularity"],
         trend=trend["trend"],
     )
+    cache.set(cache_key, response.dict())
+    return response
 
 
 def _load_dataset(dataset_type, dataset_path: str | None):

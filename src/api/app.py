@@ -6,6 +6,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from src.api.routes import datasets, intents, conversations, training, health
+from src.api.middleware import RateLimitMiddleware, RequestMetricsMiddleware
+from src.api.dependencies import get_metrics_collector
 
 
 def create_app() -> FastAPI:
@@ -23,6 +25,11 @@ def create_app() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+    metrics_collector = get_metrics_collector()
+    app.state.metrics_collector = metrics_collector
+    app.add_middleware(RateLimitMiddleware, limit=120, window_seconds=60)
+    app.add_middleware(RequestMetricsMiddleware, collector=metrics_collector)
 
     app.include_router(health.router, tags=["health"])
     app.include_router(datasets.router, prefix="/datasets", tags=["datasets"])

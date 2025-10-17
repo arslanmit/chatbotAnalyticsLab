@@ -4,9 +4,14 @@ Health and diagnostics endpoints.
 
 from datetime import datetime
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 
-from src.api.schemas.common import HealthResponse, ServiceInfoResponse
+from src.api.dependencies import get_metrics_collector
+from src.api.schemas.common import (
+    HealthResponse,
+    ServiceInfoResponse,
+    MonitoringMetricsResponse,
+)
 from src.config.settings import settings
 
 router = APIRouter()
@@ -32,4 +37,22 @@ def service_info() -> ServiceInfoResponse:
         debug=settings.debug,
         dataset_dir=settings.data.dataset_dir,
         model_registry=str(settings.model.cache_dir),
+    )
+
+
+@router.get("/health/metrics", response_model=MonitoringMetricsResponse)
+async def service_metrics(collector=Depends(get_metrics_collector)) -> MonitoringMetricsResponse:
+    stats = await collector.snapshot()
+    endpoints = {
+        path: {
+            "path": path,
+            **metrics,
+        }
+        for path, metrics in stats["endpoints"].items()
+    }
+    return MonitoringMetricsResponse(
+        total_requests=stats["total_requests"],
+        total_errors=stats["total_errors"],
+        average_latency_ms=stats["average_latency_ms"],
+        endpoints=endpoints,
     )
