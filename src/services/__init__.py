@@ -9,6 +9,9 @@ from src.services.data_preprocessor import (
     DataAugmentor
 )
 from src.services.model_evaluator import ModelEvaluator
+from src.services.conversation_analyzer import ConversationFlowAnalyzer
+from src.services.sentiment_analyzer import SentimentAnalyzer
+from src.services.performance_analyzer import PerformanceAnalyzer
 
 __all__ = [
     'DataValidator',
@@ -16,5 +19,8 @@ __all__ = [
     'DataPreprocessor',
     'ConversationExtractor',
     'DataAugmentor',
-    'ModelEvaluator'
+    'ModelEvaluator',
+    'ConversationFlowAnalyzer',
+    'SentimentAnalyzer',
+    'PerformanceAnalyzer'
 ]
