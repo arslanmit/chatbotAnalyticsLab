@@ -3,10 +3,14 @@
 from __future__ import annotations
 
 from io import BytesIO
-from typing import Dict, List
+from typing import Any, Dict, List
 
 import pandas as pd
 from fpdf import FPDF
+
+
+def _safe(text: Any) -> str:
+    return str(text).encode("latin-1", "ignore").decode("latin-1")
 
 
 def experiments_to_csv(experiments: List[Dict]) -> bytes:
@@ -18,12 +22,12 @@ def build_experiments_pdf(experiments: List[Dict], title: str = "Experiment Summ
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", "B", 16)
-    pdf.cell(0, 10, title, ln=True)
+    pdf.cell(0, 10, _safe(title), ln=True)
 
     pdf.set_font("Arial", size=10)
     for exp in experiments[:50]:
         line = f"{exp.get('run_id', 'N/A')} | {exp.get('model_id', 'model')} | Acc: {exp.get('validation_metrics', {}).get('accuracy', 'N/A')}"
-        pdf.multi_cell(0, 7, txt=line)
+        pdf.multi_cell(0, 7, txt=_safe(line))
         pdf.ln(1)
 
     buffer = BytesIO()
@@ -43,13 +47,13 @@ def analytics_to_pdf(title: str, metrics: Dict[str, str], tables: Dict[str, List
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", "B", 16)
-    pdf.cell(0, 10, title, ln=True)
+    pdf.cell(0, 10, _safe(title), ln=True)
 
     pdf.set_font("Arial", size=12)
     pdf.cell(0, 8, "Metrics", ln=True)
     pdf.set_font("Arial", size=10)
     for key, value in metrics.items():
-        pdf.cell(0, 6, f"- {key}: {value}", ln=True)
+        pdf.cell(0, 6, _safe(f"- {key}: {value}"), ln=True)
 
     for table_name, rows in tables.items():
         pdf.ln(4)
@@ -58,7 +62,7 @@ def analytics_to_pdf(title: str, metrics: Dict[str, str], tables: Dict[str, List
         pdf.set_font("Arial", size=10)
         for row in rows[:25]:
             line = " | ".join(f"{k}: {v}" for k, v in row.items())
-            pdf.multi_cell(0, 6, line)
+            pdf.multi_cell(0, 6, _safe(line))
             pdf.ln(1)
 
     buffer = BytesIO()

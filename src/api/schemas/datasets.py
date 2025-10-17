@@ -4,7 +4,7 @@ Dataset-related schemas.
 
 from typing import Optional
 
-from pydantic import BaseModel, root_validator
+from pydantic import BaseModel, model_validator
 
 from src.models.core import DatasetType
 
@@ -30,10 +30,8 @@ class DatasetUploadRequest(BaseModel):
     preprocess: bool = True
     normalize_text: bool = True
 
-    @root_validator
-    def validate_source(cls, values):
-        file_path = values.get("file_path")
-        url = values.get("url")
-        if not file_path and not url:
+    @model_validator(mode="after")
+    def validate_source(cls, values: "DatasetUploadRequest") -> "DatasetUploadRequest":
+        if not values.file_path and not values.url:
             raise ValueError("Either file_path or url must be provided.")
         return values

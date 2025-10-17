@@ -67,7 +67,7 @@ class ModelArtifactRepository:
                 model_id=model_id,
                 version=version,
                 path=path,
-                metadata=metadata,
+                metadata_json=metadata,
             )
             try:
                 session.add(entry)
@@ -80,7 +80,7 @@ class ModelArtifactRepository:
                     .one()
                 )
                 entry.path = path
-                entry.metadata = metadata
+                entry.metadata_json = metadata
                 session.add(entry)
                 session.flush()
             logger.debug("Registered model artifact %s:%s", model_id, version)
@@ -98,11 +98,16 @@ class DatasetRepository:
                 .one_or_none()
             )
             if record is None:
-                record = DatasetRecord(name=name, dataset_type=dataset_type, path=path, metadata=metadata)
+                record = DatasetRecord(
+                    name=name,
+                    dataset_type=dataset_type,
+                    path=path,
+                    metadata_json=metadata,
+                )
                 session.add(record)
             else:
                 record.path = path
-                record.metadata = metadata
+                record.metadata_json = metadata
             session.flush()
             logger.debug("Stored dataset record %s (%s)", name, dataset_type)
             return record

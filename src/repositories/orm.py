@@ -37,7 +37,7 @@ class ModelArtifactEntry(Base):
     model_id = Column(String(128), index=True, nullable=False)
     version = Column(String(64), nullable=False)
     path = Column(String(512), nullable=False)
-    metadata = Column(JSON, default=dict)
+    metadata_json = Column(JSON, default=dict)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
 
 
@@ -49,5 +49,5 @@ class DatasetRecord(Base):
     name = Column(String(128), nullable=False, index=True)
     dataset_type = Column(String(64), nullable=False, index=True)
     path = Column(String(512), nullable=True)
-    metadata = Column(JSON, default=dict)
+    metadata_json = Column(JSON, default=dict)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
