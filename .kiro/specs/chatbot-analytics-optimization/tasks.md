@@ -27,7 +27,7 @@
     - Build train/validation/test split functionality
     - _Requirements: 1.1, 4.1_
 
-- [ ] 3. Build intent classification system
+- [x] 3. Build intent classification system
   - [x] 3.1 Implement base intent classifier
     - Create BERT-based intent classification model
     - Implement training pipeline with HuggingFace transformers
@@ -40,7 +40,7 @@
     - Create model caching and warm-up mechanisms
     - _Requirements: 2.3, 7.3_
 
-  - [ ] 3.3 Build model evaluation and metrics
+  - [x] 3.3 Build model evaluation and metrics
     - Implement accuracy, precision, recall, F1-score calculations
     - Create confusion matrix generation and analysis
     - Build model comparison and benchmarking tools

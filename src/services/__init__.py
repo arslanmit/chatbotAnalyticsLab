@@ -8,11 +8,13 @@ from src.services.data_preprocessor import (
     ConversationExtractor,
     DataAugmentor
 )
+from src.services.model_evaluator import ModelEvaluator
 
 __all__ = [
     'DataValidator',
     'DataQualityAnalyzer',
     'DataPreprocessor',
     'ConversationExtractor',
-    'DataAugmentor'
+    'DataAugmentor',
+    'ModelEvaluator'
 ]
