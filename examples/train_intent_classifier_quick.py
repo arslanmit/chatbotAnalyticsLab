@@ -55,18 +55,7 @@ def main():
     logger.info(f"Train size: {len(train_dataset.conversations)}")
     logger.info(f"Validation size: {len(val_dataset.conversations)}")
     logger.info(f"Test size: {len(test_dataset.conversations)}")
-    
-    # Prepare training data
-    train_data = [(turn.text, turn.intent) 
-                  for conv in train_dataset.conversations 
-                  for turn in conv.turns if turn.intent]
-    val_data = [(turn.text, turn.intent) 
-                for conv in val_dataset.conversations 
-                for turn in conv.turns if turn.intent]
-    test_data = [(turn.text, turn.intent) 
-                 for conv in test_dataset.conversations 
-                 for turn in conv.turns if turn.intent]
-    
+
     # Training configuration - QUICK VERSION
     config = TrainingConfig(
         model_name="bert-base-uncased",
@@ -82,7 +71,7 @@ def main():
     classifier = IntentClassifier(model_name=config.model_name)
     
     logger.info("Starting quick training (1 epoch)...")
-    result = classifier.train(train_data, val_data, config)
+    result = classifier.train(train_dataset, val_dataset, config)
     
     logger.info("\n" + "="*50)
     logger.info("Training Results:")
