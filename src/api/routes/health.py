@@ -11,9 +11,11 @@ from src.api.schemas.common import (
     HealthResponse,
     ServiceInfoResponse,
     MonitoringMetricsResponse,
+    AlertCheckResponse,
+    AlertDetailResponse,
 )
 from src.config.settings import settings
-from src.monitoring import collect_system_metrics
+from src.monitoring import collect_system_metrics, evaluate_alerts, dispatch_alerts
 
 router = APIRouter()
 
@@ -58,4 +60,24 @@ async def service_metrics(collector=Depends(get_metrics_collector)) -> Monitorin
         average_latency_ms=stats["average_latency_ms"],
         endpoints=endpoints,
         system=system_metrics,
+    )
+
+
+@router.get("/health/alerts", response_model=AlertCheckResponse)
+async def alert_check(trigger: bool = False, collector=Depends(get_metrics_collector)) -> AlertCheckResponse:
+    stats = await collector.snapshot()
+    system_metrics = collect_system_metrics()
+    alerts = evaluate_alerts(stats, system_metrics)
+    if trigger and alerts:
+        dispatch_alerts(alerts)
+    return AlertCheckResponse(
+        alerts=[
+            AlertDetailResponse(
+                name=alert.name,
+                severity=alert.severity,
+                message=alert.message,
+                details=alert.details,
+            )
+            for alert in alerts
+        ]
     )

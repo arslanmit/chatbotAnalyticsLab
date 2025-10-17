@@ -4,7 +4,7 @@ Configuration management for the Chatbot Analytics System.
 
 import os
 from pathlib import Path
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
 from dataclasses import dataclass, field
 import json
 
@@ -74,6 +74,15 @@ class LoggingConfig:
 
 
 @dataclass
+class AlertConfig:
+    """Alerting configuration."""
+    cpu_threshold: float = 85.0
+    memory_threshold: float = 85.0
+    request_latency_threshold_ms: float = 1200.0
+    channels: List[str] = field(default_factory=lambda: ["log"])
+
+
+@dataclass
 class Settings:
     """Main application settings."""
     database: DatabaseConfig = field(default_factory=DatabaseConfig)
@@ -82,6 +91,7 @@ class Settings:
     api: APIConfig = field(default_factory=APIConfig)
     dashboard: DashboardConfig = field(default_factory=DashboardConfig)
     logging: LoggingConfig = field(default_factory=LoggingConfig)
+    alerts: AlertConfig = field(default_factory=AlertConfig)
     
     # Environment settings
     environment: str = "development"
@@ -123,6 +133,15 @@ class Settings:
             settings.logging.level = log_level.upper()
         if log_file := os.getenv("LOG_FILE"):
             settings.logging.file_path = log_file
+
+        if cpu_threshold := os.getenv("ALERT_CPU_THRESHOLD"):
+            settings.alerts.cpu_threshold = float(cpu_threshold)
+        if memory_threshold := os.getenv("ALERT_MEMORY_THRESHOLD"):
+            settings.alerts.memory_threshold = float(memory_threshold)
+        if latency_threshold := os.getenv("ALERT_LATENCY_THRESHOLD_MS"):
+            settings.alerts.request_latency_threshold_ms = float(latency_threshold)
+        if alert_channels := os.getenv("ALERT_CHANNELS"):
+            settings.alerts.channels = [channel.strip() for channel in alert_channels.split(",") if channel.strip()]
         
         # Environment
         settings.environment = os.getenv("ENVIRONMENT", "development")
@@ -172,6 +191,11 @@ class Settings:
             for key, value in config_data['logging'].items():
                 if hasattr(settings.logging, key):
                     setattr(settings.logging, key, value)
+
+        if 'alerts' in config_data:
+            for key, value in config_data['alerts'].items():
+                if hasattr(settings.alerts, key):
+                    setattr(settings.alerts, key, value)
         
         # Top-level settings
         settings.environment = config_data.get('environment', settings.environment)
@@ -227,6 +251,12 @@ class Settings:
                 'file_path': self.logging.file_path,
                 'max_file_size': self.logging.max_file_size,
                 'backup_count': self.logging.backup_count
+            },
+            'alerts': {
+                'cpu_threshold': self.alerts.cpu_threshold,
+                'memory_threshold': self.alerts.memory_threshold,
+                'request_latency_threshold_ms': self.alerts.request_latency_threshold_ms,
+                'channels': self.alerts.channels
             },
             'environment': self.environment,
             'debug': self.debug
