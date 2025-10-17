@@ -13,6 +13,7 @@ from src.api.schemas.datasets import (
 )
 from src.api.dependencies import get_data_preprocessor
 from src.repositories.persistence import DatasetRepository, ConversationRepository
+from src.monitoring import timed
 from src.repositories.dataset_loaders import DatasetLoaderFactory
 
 router = APIRouter()
@@ -49,7 +50,7 @@ async def upload_dataset(
         )
 
     loader = DatasetLoaderFactory.get_loader(request.dataset_type)
-    dataset = loader.load(dataset_path)
+    dataset = _timed_load_dataset(loader, dataset_path)
 
     preprocessed_flag = False
     normalized_flag = False
@@ -89,3 +90,6 @@ async def upload_dataset(
         preprocessed=preprocessed_flag,
         normalized=normalized_flag,
     )
+@timed("datasets.upload.load")
+def _timed_load_dataset(loader, dataset_path: Path):
+    return loader.load(dataset_path)

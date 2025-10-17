@@ -19,6 +19,7 @@ from src.repositories.dataset_loaders import DatasetLoaderFactory
 from src.repositories.model_repository import ModelRepository
 from src.services.data_preprocessor import DataPreprocessor
 from src.services.model_evaluator import ModelEvaluator
+from src.monitoring import timed
 from src.services.experiment_tracker import ExperimentTracker
 from src.utils.logging import get_logger
 
@@ -139,6 +140,7 @@ class TrainingPipeline:
         pipeline_logger.propagate = True
         self.pipeline_logger = pipeline_logger
 
+    @timed("training_pipeline.load_dataset")
     def _load_dataset(self, dataset_path: Path) -> Dataset:
         loader = DatasetLoaderFactory.get_loader(self.pipeline_config.dataset_type)
         self.pipeline_logger.info("Loading dataset from %s", dataset_path)

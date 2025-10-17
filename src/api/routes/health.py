@@ -13,6 +13,7 @@ from src.api.schemas.common import (
     MonitoringMetricsResponse,
 )
 from src.config.settings import settings
+from src.monitoring import collect_system_metrics
 
 router = APIRouter()
 
@@ -50,9 +51,11 @@ async def service_metrics(collector=Depends(get_metrics_collector)) -> Monitorin
         }
         for path, metrics in stats["endpoints"].items()
     }
+    system_metrics = collect_system_metrics()
     return MonitoringMetricsResponse(
         total_requests=stats["total_requests"],
         total_errors=stats["total_errors"],
         average_latency_ms=stats["average_latency_ms"],
         endpoints=endpoints,
+        system=system_metrics,
     )

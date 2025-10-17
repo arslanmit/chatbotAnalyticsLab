@@ -3,7 +3,7 @@ Common request and response models.
 """
 
 from datetime import datetime
-from typing import Dict, Optional
+from typing import Dict, Optional, Any
 
 from pydantic import BaseModel
 
@@ -42,3 +42,4 @@ class MonitoringMetricsResponse(BaseModel):
     total_errors: int
     average_latency_ms: float
     endpoints: Dict[str, EndpointMetricsResponse]
+    system: Dict[str, Any]
