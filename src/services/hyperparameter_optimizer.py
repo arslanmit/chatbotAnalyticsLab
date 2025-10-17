@@ -11,6 +11,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from src.models.core import TrainingConfig
 from src.services.training_pipeline import TrainingPipeline, TrainingPipelineConfig
+from src.services.experiment_tracker import ExperimentTracker
 from src.repositories.model_repository import ModelRepository
 from src.utils.logging import get_logger
 
@@ -42,6 +43,7 @@ class HyperparameterOptimizer:
         greater_is_better: bool = True,
         model_repository: Optional[ModelRepository] = None,
         random_seed: int = 42,
+        experiment_tracker: Optional[ExperimentTracker] = None,
     ):
         self.base_pipeline_config = pipeline_config
         self.base_training_config = base_training_config
@@ -50,6 +52,7 @@ class HyperparameterOptimizer:
         self.model_repository = model_repository or ModelRepository()
         self.random = random.Random(random_seed)
         self._trial_counter = 0
+        self.experiment_tracker = experiment_tracker or ExperimentTracker()
 
     # Public API -----------------------------------------------------------------
 
@@ -116,6 +119,7 @@ class HyperparameterOptimizer:
             pipeline_config=pipeline_config,
             training_config=training_config,
             model_repository=self.model_repository,
+            experiment_tracker=self.experiment_tracker,
         )
         run_summary = pipeline.run()
         score = self._extract_metric(run_summary)

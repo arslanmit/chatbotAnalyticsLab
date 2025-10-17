@@ -14,6 +14,7 @@ from src.services.sentiment_analyzer import SentimentAnalyzer
 from src.services.performance_analyzer import PerformanceAnalyzer
 from src.services.training_pipeline import TrainingPipeline, TrainingPipelineConfig
 from src.services.hyperparameter_optimizer import HyperparameterOptimizer
+from src.services.experiment_tracker import ExperimentTracker
 
 __all__ = [
     'DataValidator',
@@ -27,5 +28,6 @@ __all__ = [
     'PerformanceAnalyzer',
     'TrainingPipeline',
     'TrainingPipelineConfig',
-    'HyperparameterOptimizer'
+    'HyperparameterOptimizer',
+    'ExperimentTracker'
 ]

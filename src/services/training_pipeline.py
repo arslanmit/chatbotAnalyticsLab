@@ -19,6 +19,7 @@ from src.repositories.dataset_loaders import DatasetLoaderFactory
 from src.repositories.model_repository import ModelRepository
 from src.services.data_preprocessor import DataPreprocessor
 from src.services.model_evaluator import ModelEvaluator
+from src.services.experiment_tracker import ExperimentTracker
 from src.utils.logging import get_logger
 
 logger = get_logger(__name__)
@@ -68,12 +69,14 @@ class TrainingPipeline:
         pipeline_config: TrainingPipelineConfig,
         training_config: TrainingConfig,
         model_repository: Optional[ModelRepository] = None,
+        experiment_tracker: Optional[ExperimentTracker] = None,
     ):
         self.pipeline_config = pipeline_config
         self.training_config = training_config
         self.model_repository = model_repository or ModelRepository()
         self.preprocessor = DataPreprocessor()
         self.evaluator = ModelEvaluator()
+        self.experiment_tracker = experiment_tracker or ExperimentTracker()
 
         timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
         self.run_id = f"{pipeline_config.model_id}_{timestamp}"
@@ -114,7 +117,8 @@ class TrainingPipeline:
             saved_model_path,
         )
 
-        self._write_run_summary(run_summary)
+        summary_path = self._write_run_summary(run_summary)
+        self._log_experiment(run_summary, summary_path, evaluation_summary)
         logger.info("Training pipeline completed successfully for run_id=%s", self.run_id)
         return run_summary
 
@@ -269,11 +273,12 @@ class TrainingPipeline:
             "model_artifact_path": saved_model_path,
         }
 
-    def _write_run_summary(self, summary: Dict[str, Any]):
+    def _write_run_summary(self, summary: Dict[str, Any]) -> Path:
         summary_path = self.run_dir / "run_summary.json"
         with open(summary_path, "w", encoding="utf-8") as f:
             json.dump(summary, f, indent=2)
         self.pipeline_logger.info("Persisted run summary to %s", summary_path)
+        return summary_path
 
     @staticmethod
     def _serialize_metrics(metrics: PerformanceMetrics) -> Dict[str, Any]:
@@ -298,3 +303,40 @@ class TrainingPipeline:
             reverse=True,
         )
         return candidates[0] if candidates else None
+
+    def _log_experiment(
+        self,
+        run_summary: Dict[str, Any],
+        summary_path: Path,
+        evaluation_summary: Dict[str, Any],
+    ):
+        if not self.experiment_tracker:
+            return
+
+        tags = [
+            self.pipeline_config.dataset_type.value,
+            self.training_config.model_name,
+        ]
+        extra_metadata = {
+            "run_dir": str(self.run_dir),
+            "training_time": getattr(self.training_result, "training_time", None),
+            "evaluation_artifact": evaluation_summary.get("artifact_path") if evaluation_summary else None,
+        }
+
+        record = self.experiment_tracker.log_experiment(
+            run_summary=run_summary,
+            tags=tags,
+            extra_metadata=extra_metadata,
+        )
+
+        self.experiment_tracker.register_artifact(
+            run_id=record.run_id,
+            artifact_type="run_summary",
+            path=str(summary_path),
+        )
+        if evaluation_summary and evaluation_summary.get("artifact_path"):
+            self.experiment_tracker.register_artifact(
+                run_id=record.run_id,
+                artifact_type="evaluation",
+                path=evaluation_summary["artifact_path"],
+            )
