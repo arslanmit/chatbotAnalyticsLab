@@ -1,0 +1,74 @@
+Overview: 
+
+This assignment challenges students to explore, implement, and critically evaluate a wide 
+range of chatbot analytics techniques, from foundational performance metrics to advanced 
+testing, personalization, and visualization strategies. Through a combination of research-
+driven analysis and hands-on experimentation, students will address real-world challenges in 
+chatbot optimization. The final report will demonstrate technical proficiency in using analytics 
+tools, a user-centric and ethical approach to design, and the ability to communicate insights 
+clearly to both technical and non-technical stakeholders.
+
+Task 1: Strategic Design of Chatbot Analytics Framework (20 Marks) (LO1)
+▪ Design a comprehensive analytics strategy for a customer support chatbot used in a retail 
+banking environment.
+▪ Your strategy should include relevant chatbot performance metrics, user interaction logging, 
+and business KPIs.
+▪ Justify your selection of analytics types (e.g., A/B testing, funnel analysis, etc.) and how they 
+contribute to innovation in performance evaluation.
+
+Task 2: Research and Critique of Industry Optimization Approaches (20 Marks) (LO2)
+▪ Select two industry-specific case studies involving chatbot optimization (e.g., travel, 
+healthcare, or e-commerce sectors).
+▪ Analyze how these organizations used analytics tools, retention/churn modeling, 
+or ROI analysis to optimize chatbot performance.
+▪ Compare these approaches with current trends such as adaptive dialog flow models, 
+multivariate testing, and prompt engineering for LLMs.
+
+Learning Outcomes:
+LO1: Design and implement analytics strategies for chatbots, apply natural language 
+processing (NLP) techniques to analyse user interactions and sentiment, fostering 
+innovation in chatbot performance evaluation.
+LO2: Conduct comprehensive research on industry-specific chatbot optimization 
+challenges, critically analyse case studies and emerging trends to develop data-driven 
+optimization strategies tailored to real-world applications.
+LO3: Actively engage with practical projects to optimize chatbot performance, focusing 
+on user-centric design, personalized responses, and ethical considerations, and 
+communicate their findings effectively to non-technical stakeholders, bridging the gap 
+between theory and practical implementation.
+
+Task 3: Practical Implementation and Evaluation of Chatbot Analytics (25 Marks) (LO3)
+▪ Choose one of the following chatbot options as your base:
+➢ A chatbot you developed in the previous semester (e.g., using Rasa, Dialogflow, or 
+BotPress).
+➢ A free, ready-made open source chatbot (e.g., from Rasa GitHub examples, BotPress 
+demo bots, or Hugging Face spaces).
+▪ Using your selected chatbot, integrate or simulate an analytics feature focused on one of the 
+following areas:
+➢ Session heatmaps (e.g., user click paths or time-on-node visualizations)
+➢ User segmentation & personalization (e.g., by intent frequency, channel usage)
+➢ Accessibility or fallback optimization techniques
+▪ You may use tools such as:
+▪ Python with Plotly/Dash for interactive visualizations
+▪ Rasa Analytics plug-ins or telemetry integrations
+▪ Flask with Matplotlib or Seaborn for simple analytics dashboards
+▪ Google Colab for running and showcasing the implementation
+▪ Discuss how your implementation:
+➢ Help improve chatbot performance and user satisfaction
+➢ Addresses ethical design, transparency, and explainability
+
+Task 4: Critical Evaluation and Testing Strategy (20 Marks) (LO1 & LO3)
+▪ Propose a robust evaluation strategy for your chatbot use:
+➢ A/B testing
+➢ Statistical testing for dialogs
+➢ Dialogue anomaly or intent drift detection
+▪ Critically reflect on how each testing method supports user-centric improvements and 
+innovation.
+
+Task 5: Insightful Reporting and Visualization (15 Marks) (LO1, LO2 & LO3)
+▪ Propose a final dashboard design for your chatbot analytics using real or simulated data.
+▪ Your dashboard should:
+▪ Present cross-platform performance, user journey attribution, and feedback/implicit 
+signals
+▪ Support decision-making through visual insights
+▪ Reflect on how this reporting structure helps non-technical stakeholders understand 
+performance insights.
