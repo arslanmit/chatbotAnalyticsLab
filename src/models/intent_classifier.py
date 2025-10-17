@@ -16,7 +16,8 @@ from transformers import (
     AutoModelForSequenceClassification,
     TrainingArguments,
     Trainer,
-    EvalPrediction
+    EvalPrediction,
+    EarlyStoppingCallback
 )
 from datasets import Dataset as HFDataset
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support, confusion_matrix
@@ -343,10 +344,11 @@ class IntentClassifier(IntentClassifierInterface):
             per_device_eval_batch_size=config.batch_size,
             learning_rate=config.learning_rate,
             weight_decay=0.01,
-            eval_strategy="epoch",
-            save_strategy="epoch",
+            evaluation_strategy=config.evaluation_strategy,
+            save_strategy=config.evaluation_strategy,
             load_best_model_at_end=True,
-            metric_for_best_model="accuracy",
+            metric_for_best_model=config.metric_for_best_model,
+            greater_is_better=config.greater_is_better,
             logging_dir=f"{output_dir}/logs",
             logging_steps=10,
             seed=config.random_seed,
@@ -355,11 +357,28 @@ class IntentClassifier(IntentClassifierInterface):
             dataloader_num_workers=4 if use_gpu else 0,  # Parallel data loading
             gradient_accumulation_steps=1,
             warmup_steps=100,  # Learning rate warmup
+            save_total_limit=config.save_total_limit
         )
         
         if use_gpu:
             logger.info("GPU acceleration enabled for training")
             logger.info(f"Mixed precision (FP16) training: {fp16}")
+        
+        callbacks = []
+        if config.early_stopping_patience is not None:
+            if config.evaluation_strategy == "no":
+                logger.warning(
+                    "Early stopping requested but evaluation_strategy='no'. "
+                    "Setting evaluation_strategy to 'epoch' for early stopping."
+                )
+                training_args.evaluation_strategy = "epoch"
+                training_args.save_strategy = "epoch"
+            callbacks.append(
+                EarlyStoppingCallback(
+                    early_stopping_patience=config.early_stopping_patience,
+                    early_stopping_threshold=config.early_stopping_threshold
+                )
+            )
         
         # Initialize trainer
         trainer = Trainer(
@@ -367,7 +386,8 @@ class IntentClassifier(IntentClassifierInterface):
             args=training_args,
             train_dataset=train_tokenized,
             eval_dataset=val_tokenized,
-            compute_metrics=self._compute_metrics
+            compute_metrics=self._compute_metrics,
+            callbacks=callbacks if callbacks else None
         )
         
         # Train the model

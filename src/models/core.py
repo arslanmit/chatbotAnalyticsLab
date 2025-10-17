@@ -181,6 +181,12 @@ class TrainingConfig:
     train_test_split: float = 0.8
     validation_split: float = 0.1
     random_seed: int = 42
+    evaluation_strategy: str = "epoch"
+    save_total_limit: Optional[int] = 2
+    metric_for_best_model: str = "accuracy"
+    greater_is_better: bool = True
+    early_stopping_patience: Optional[int] = None
+    early_stopping_threshold: float = 0.0
     
     def to_dict(self) -> Dict[str, Any]:
         """Convert config to dictionary."""
@@ -192,7 +198,13 @@ class TrainingConfig:
             'max_length': self.max_length,
             'train_test_split': self.train_test_split,
             'validation_split': self.validation_split,
-            'random_seed': self.random_seed
+            'random_seed': self.random_seed,
+            'evaluation_strategy': self.evaluation_strategy,
+            'save_total_limit': self.save_total_limit,
+            'metric_for_best_model': self.metric_for_best_model,
+            'greater_is_better': self.greater_is_better,
+            'early_stopping_patience': self.early_stopping_patience,
+            'early_stopping_threshold': self.early_stopping_threshold
         }
 
 
