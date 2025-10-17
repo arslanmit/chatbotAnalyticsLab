@@ -37,6 +37,9 @@ class DataConfig:
     max_conversations_per_dataset: Optional[int] = None
     validation_split: float = 0.15
     test_split: float = 0.15
+    backup_dir: str = "./backups"
+    backup_format: str = "json"
+    backup_retention: int = 5
 
 
 @dataclass
@@ -195,7 +198,10 @@ class Settings:
             'data': {
                 'dataset_dir': self.data.dataset_dir,
                 'processed_data_dir': self.data.processed_data_dir,
-                'cache_dir': self.data.cache_dir,
+            'cache_dir': self.data.cache_dir,
+            'backup_dir': self.data.backup_dir,
+            'backup_format': self.data.backup_format,
+            'backup_retention': self.data.backup_retention,
                 'max_conversations_per_dataset': self.data.max_conversations_per_dataset,
                 'validation_split': self.data.validation_split,
                 'test_split': self.data.test_split
