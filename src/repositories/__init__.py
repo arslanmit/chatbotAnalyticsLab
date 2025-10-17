@@ -10,6 +10,7 @@ from src.repositories.dataset_loaders import (
     SyntheticSupportLoader,
     DatasetLoaderFactory
 )
+from src.repositories.model_repository import ModelRepository
 
 __all__ = [
     'Banking77Loader',
@@ -17,5 +18,6 @@ __all__ = [
     'SchemaGuidedLoader',
     'TwitterSupportLoader',
     'SyntheticSupportLoader',
-    'DatasetLoaderFactory'
+    'DatasetLoaderFactory',
+    'ModelRepository'
 ]
