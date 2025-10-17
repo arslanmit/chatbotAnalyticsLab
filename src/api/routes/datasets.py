@@ -12,13 +12,14 @@ from src.api.schemas.datasets import (
     DatasetUploadResponse,
 )
 from src.api.dependencies import get_data_preprocessor
-from src.repositories.persistence import DatasetRepository
+from src.repositories.persistence import DatasetRepository, ConversationRepository
 from src.repositories.dataset_loaders import DatasetLoaderFactory
 
 router = APIRouter()
 
 
 dataset_repository = DatasetRepository()
+conversation_repository = ConversationRepository()
 
 
 @router.post("/upload", response_model=DatasetUploadResponse)
@@ -53,6 +54,11 @@ async def upload_dataset(
     preprocessed_flag = False
     normalized_flag = False
 
+    dataset.metadata = {
+        **dataset.metadata,
+        "path": str(dataset_path),
+    }
+
     if request.preprocess:
         dataset = preprocessor.preprocess_dataset(dataset, normalize=request.normalize_text)
         preprocessed_flag = True
@@ -60,16 +66,18 @@ async def upload_dataset(
 
     intents = dataset.get_intents()
 
+    persistence_metadata = {**dataset.metadata, "intent_count": len(intents)}
     try:
         dataset_repository.save(
             name=dataset.name,
             dataset_type=dataset.dataset_type.value,
             path=str(dataset_path),
-            metadata={**dataset.metadata, "intent_count": len(intents)},
+            metadata=persistence_metadata,
         )
+        conversation_repository.save_dataset_conversations(dataset)
     except Exception as exc:  # pragma: no cover
         logger = logging.getLogger(__name__)
-        logger.warning("Failed to persist dataset metadata: %s", exc)
+        logger.warning("Failed to persist dataset information: %s", exc)
 
     return DatasetUploadResponse(
         name=dataset.name,

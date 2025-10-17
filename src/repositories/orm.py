@@ -4,8 +4,19 @@ from __future__ import annotations
 
 from datetime import datetime
 
-from sqlalchemy import Column, DateTime, Integer, String, JSON, UniqueConstraint
-from sqlalchemy.orm import declarative_base
+from sqlalchemy import (
+    Column,
+    DateTime,
+    ForeignKey,
+    Integer,
+    String,
+    JSON,
+    UniqueConstraint,
+    Text,
+    Float,
+    Boolean,
+)
+from sqlalchemy.orm import declarative_base, relationship
 
 Base = declarative_base()
 
@@ -50,4 +61,41 @@ class DatasetRecord(Base):
     dataset_type = Column(String(64), nullable=False, index=True)
     path = Column(String(512), nullable=True)
     metadata_json = Column(JSON, default=dict)
+    conversations = relationship("ConversationRecord", back_populates="dataset", cascade="all, delete-orphan")
+
+
+class ConversationRecord(Base):
+    __tablename__ = "conversations"
+    __table_args__ = (UniqueConstraint("conversation_id", name="uq_conversation_id"),)
+
+    id = Column(Integer, primary_key=True)
+    conversation_id = Column(String(128), nullable=False, index=True)
+    dataset_id = Column(Integer, ForeignKey("datasets.id", ondelete="CASCADE"), nullable=False, index=True)
+    source_dataset = Column(String(64), nullable=False)
+    success = Column(Boolean, nullable=True)
+    metadata_json = Column(JSON, default=dict)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+
+    dataset = relationship("DatasetRecord", back_populates="conversations")
+    turns = relationship(
+        "ConversationTurnRecord",
+        back_populates="conversation",
+        cascade="all, delete-orphan",
+        order_by="ConversationTurnRecord.order_index",
+    )
+
+
+class ConversationTurnRecord(Base):
+    __tablename__ = "conversation_turns"
+
+    id = Column(Integer, primary_key=True)
+    conversation_id = Column(Integer, ForeignKey("conversations.id", ondelete="CASCADE"), nullable=False, index=True)
+    order_index = Column(Integer, nullable=False)
+    speaker = Column(String(32), nullable=False)
+    text = Column(Text, nullable=False)
+    timestamp_iso = Column(String(64), nullable=True)
+    intent = Column(String(128), nullable=True)
+    confidence = Column(Float, nullable=True)
+
+    conversation = relationship("ConversationRecord", back_populates="turns")
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
