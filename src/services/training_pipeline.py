@@ -93,6 +93,7 @@ class TrainingPipeline:
     def run(self) -> Dict[str, Any]:
         """Execute the training workflow end-to-end."""
         dataset_path = self.pipeline_config.resolved_dataset_path()
+        self.dataset_path = dataset_path
         dataset = self._load_dataset(dataset_path)
 
         if self.pipeline_config.preprocess:
@@ -142,6 +143,10 @@ class TrainingPipeline:
         loader = DatasetLoaderFactory.get_loader(self.pipeline_config.dataset_type)
         self.pipeline_logger.info("Loading dataset from %s", dataset_path)
         dataset = loader.load(dataset_path)
+        dataset.metadata = {
+            **dataset.metadata,
+            "path": str(dataset_path),
+        }
         self.pipeline_logger.info(
             "Loaded dataset %s (%d conversations, %d total turns)",
             dataset.name,
@@ -225,6 +230,7 @@ class TrainingPipeline:
             "run_id": self.run_id,
             "model_name": self.training_config.model_name,
             "dataset_type": self.pipeline_config.dataset_type.value,
+            "dataset_path": str(getattr(self, "dataset_path", "")),
             "training_metrics": self._serialize_metrics(self.training_result.training_metrics),
             "validation_metrics": self._serialize_metrics(self.training_result.validation_metrics),
             "test_metrics": self._serialize_metrics(test_metrics),
@@ -258,6 +264,7 @@ class TrainingPipeline:
                 "name": dataset.name,
                 "type": dataset.dataset_type.value,
                 "total_conversations": dataset.size,
+                "path": dataset.metadata.get("path"),
             },
             "splits": {
                 "train": train_ds.size,

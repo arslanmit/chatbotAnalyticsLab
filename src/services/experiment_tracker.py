@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from src.utils.logging import get_logger
+from src.repositories.persistence import ExperimentRepository
 
 logger = get_logger(__name__)
 
@@ -56,6 +57,7 @@ class ExperimentTracker:
         if not self.storage_path.exists():
             self._save_records([])
         logger.info("ExperimentTracker initialized at %s", self.storage_path.resolve())
+        self._repository = ExperimentRepository()
 
     # Public API -----------------------------------------------------------------
 
@@ -96,6 +98,15 @@ class ExperimentTracker:
         records = [r for r in records if r["run_id"] != record.run_id]
         records.append(record.to_dict())
         self._save_records(records)
+        summary_for_persistence = {
+            **run_summary,
+            "tags": record.tags,
+            "extra_metadata": record.extra_metadata,
+        }
+        try:
+            self._repository.save_from_summary(summary_for_persistence)
+        except Exception as exc:  # pragma: no cover - persistence best effort
+            logger.warning("Failed to persist experiment run %s to database: %s", record.run_id, exc)
         logger.info("Logged experiment run_id=%s", record.run_id)
         return record
 

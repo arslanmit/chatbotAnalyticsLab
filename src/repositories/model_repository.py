@@ -13,6 +13,7 @@ from typing import Any, Dict, List, Tuple, Optional
 
 from src.interfaces.base import ModelRepositoryInterface
 from src.utils.logging import get_logger
+from src.repositories.persistence import ModelArtifactRepository
 
 logger = get_logger(__name__)
 
@@ -33,6 +34,7 @@ class ModelRepository(ModelRepositoryInterface):
         self.base_dir = Path(base_dir)
         self.base_dir.mkdir(parents=True, exist_ok=True)
         logger.info("ModelRepository initialized at %s", self.base_dir.resolve())
+        self._artifact_repository = ModelArtifactRepository()
 
     # Public API -----------------------------------------------------------------
 
@@ -79,6 +81,11 @@ class ModelRepository(ModelRepositoryInterface):
             "saved_at": datetime.utcnow().isoformat(),
         }
         self._write_metadata(version_dir, metadata_enriched)
+
+        try:
+            self._artifact_repository.save(model_id, version_dir.name, str(version_dir), metadata_enriched)
+        except Exception as exc:  # pragma: no cover - persistence best effort
+            logger.warning("Failed to register model artifact %s:%s in database: %s", model_id, version_dir.name, exc)
 
         logger.info("Model '%s' saved successfully (version=%s)", model_id, version_dir.name)
         return str(version_dir)

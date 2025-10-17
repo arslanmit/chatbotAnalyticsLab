@@ -10,6 +10,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.config.settings import settings
 from src.utils.logging import setup_logging, get_logger
+from src.repositories.database import init_db
 
 
 def initialize_application():
@@ -19,6 +20,10 @@ def initialize_application():
     logger.info("Starting Chatbot Analytics System")
     logger.info(f"Environment: {settings.environment}")
     logger.info(f"Debug mode: {settings.debug}")
+
+    # Initialize database schema
+    init_db()
+    logger.info("Database initialized at %s", settings.database.url)
     
     # Create necessary directories
     directories = [
