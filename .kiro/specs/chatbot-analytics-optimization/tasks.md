@@ -85,13 +85,13 @@
     - _Requirements: 4.5_
 
 - [ ] 6. Build API services layer
-  - [ ] 6.1 Create FastAPI application structure
+  - [x] 6.1 Create FastAPI application structure
     - Set up FastAPI application with routing
     - Implement request/response models and validation
     - Create error handling and logging middleware
     - _Requirements: 5.1, 7.4_
 
-  - [ ] 6.2 Implement core API endpoints
+  - [x] 6.2 Implement core API endpoints
     - Create dataset upload and processing endpoints
     - Build intent classification prediction endpoints
     - Implement conversation analysis endpoints
