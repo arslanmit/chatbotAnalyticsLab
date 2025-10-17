@@ -1,0 +1,262 @@
+2025-10-17 01:29:01,621 - chatbot_analytics - INFO - Starting Chatbot Analytics System
+2025-10-17 01:29:01,621 - chatbot_analytics - INFO - Environment: development
+2025-10-17 01:29:01,621 - chatbot_analytics - INFO - Debug mode: True
+2025-10-17 01:29:01,621 - chatbot_analytics - INFO - Created directory: data/processed
+2025-10-17 01:29:01,621 - chatbot_analytics - INFO - Created directory: data/cache
+2025-10-17 01:29:01,621 - chatbot_analytics - INFO - Created directory: models/cache
+2025-10-17 01:29:01,621 - chatbot_analytics - INFO - Created directory: logs
+2025-10-17 01:29:01,621 - chatbot_analytics - INFO - Created directory: data
+2025-10-17 01:29:01,621 - chatbot_analytics - INFO - Created directory: models
+2025-10-17 01:29:01,622 - chatbot_analytics - INFO - Application initialization complete
+2025-10-17 01:29:01,622 - chatbot_analytics - INFO - Chatbot Analytics System is ready
+2025-10-17 01:33:24,075 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loading Bitext dataset from Dataset/BitextRetailBanking/bitext-retail-banking-llm-chatbot-training-dataset.csv
+2025-10-17 01:33:24,270 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 25545 conversations from Bitext dataset
+2025-10-17 01:33:24,336 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 727 conversations from Schema-Guided dataset
+2025-10-17 01:33:24,337 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Auto-detected dataset type: bitext
+2025-10-17 01:33:24,337 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loading Bitext dataset from Dataset/BitextRetailBanking/bitext-retail-banking-llm-chatbot-training-dataset.csv
+2025-10-17 01:33:24,533 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 25545 conversations from Bitext dataset
+2025-10-17 01:33:24,533 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Auto-detected dataset type: schema_guided
+2025-10-17 01:33:24,587 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 727 conversations from Schema-Guided dataset
+2025-10-17 01:35:08,761 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loading Bitext dataset from Dataset/BitextRetailBanking/bitext-retail-banking-llm-chatbot-training-dataset.csv
+2025-10-17 01:35:08,947 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 25545 conversations from Bitext dataset
+2025-10-17 01:35:08,959 - chatbot_analytics.src.services.data_validator - INFO - Bitext dataset contains Q&A pairs (2 turns per conversation)
+2025-10-17 01:35:08,959 - chatbot_analytics.src.services.data_validator - INFO - Dataset validation passed for BitextRetailBanking
+2025-10-17 01:35:09,016 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 727 conversations from Schema-Guided dataset
+2025-10-17 01:35:09,017 - chatbot_analytics.src.services.data_validator - INFO - Quality assessment for SchemaGuidedDialogue: Overall=1.00, Completeness=1.00, Consistency=1.00
+2025-10-17 01:35:09,018 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loading Bitext dataset from Dataset/BitextRetailBanking/bitext-retail-banking-llm-chatbot-training-dataset.csv
+2025-10-17 01:35:09,210 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 25545 conversations from Bitext dataset
+2025-10-17 01:35:09,330 - chatbot_analytics.src.services.data_validator - INFO - Bitext dataset contains Q&A pairs (2 turns per conversation)
+2025-10-17 01:35:09,330 - chatbot_analytics.src.services.data_validator - INFO - Dataset validation passed for BitextRetailBanking
+2025-10-17 01:35:09,344 - chatbot_analytics.src.services.data_validator - INFO - Quality assessment for BitextRetailBanking: Overall=1.00, Completeness=1.00, Consistency=1.00
+2025-10-17 01:36:50,528 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 294 conversations from Schema-Guided dataset
+2025-10-17 01:36:50,548 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset SchemaGuidedDialogue with 294 conversations
+2025-10-17 01:36:50,574 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 294 conversations from Schema-Guided dataset
+2025-10-17 01:36:50,574 - chatbot_analytics.src.services.data_preprocessor - INFO - Split dataset SchemaGuidedDialogue: train=205, val=44, test=45
+2025-10-17 01:36:50,575 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loading Bitext dataset from Dataset/BitextRetailBanking/bitext-retail-banking-llm-chatbot-training-dataset.csv
+2025-10-17 01:36:50,752 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 25545 conversations from Bitext dataset
+2025-10-17 01:36:50,781 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loading Bitext dataset from Dataset/BitextRetailBanking/bitext-retail-banking-llm-chatbot-training-dataset.csv
+2025-10-17 01:36:50,962 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 25545 conversations from Bitext dataset
+2025-10-17 01:36:50,969 - chatbot_analytics.src.services.data_preprocessor - INFO - Balanced dataset BitextRetailBanking: 25545 -> 13000 conversations
+2025-10-17 01:38:03,836 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loading Bitext dataset from Dataset/BitextRetailBanking/bitext-retail-banking-llm-chatbot-training-dataset.csv
+2025-10-17 01:38:04,013 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 25545 conversations from Bitext dataset
+2025-10-17 01:38:04,029 - chatbot_analytics.src.services.data_validator - INFO - Bitext dataset contains Q&A pairs (2 turns per conversation)
+2025-10-17 01:38:04,029 - chatbot_analytics.src.services.data_validator - INFO - Dataset validation passed for BitextRetailBanking
+2025-10-17 01:38:04,043 - chatbot_analytics.src.services.data_validator - INFO - Quality assessment for BitextRetailBanking: Overall=1.00, Completeness=1.00, Consistency=1.00
+2025-10-17 01:38:05,026 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BitextRetailBanking with 25545 conversations
+2025-10-17 01:38:05,030 - chatbot_analytics.src.services.data_preprocessor - INFO - Split dataset BitextRetailBanking: train=17881, val=3831, test=3833
+2025-10-17 01:38:05,104 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 727 conversations from Schema-Guided dataset
+2025-10-17 01:38:05,115 - chatbot_analytics.src.services.data_validator - INFO - Bitext dataset contains Q&A pairs (2 turns per conversation)
+2025-10-17 01:38:05,115 - chatbot_analytics.src.services.data_validator - INFO - Dataset validation passed for BitextRetailBanking
+2025-10-17 01:38:05,129 - chatbot_analytics.src.services.data_validator - INFO - Quality assessment for BitextRetailBanking: Overall=1.00, Completeness=1.00, Consistency=1.00
+2025-10-17 02:22:11,765 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loading Bitext dataset from Dataset/BitextRetailBanking/bitext-retail-banking-llm-chatbot-training-dataset.csv
+2025-10-17 02:22:12,046 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 25545 conversations from Bitext dataset
+2025-10-17 02:22:12,062 - chatbot_analytics.src.services.data_validator - INFO - Bitext dataset contains Q&A pairs (2 turns per conversation)
+2025-10-17 02:22:12,062 - chatbot_analytics.src.services.data_validator - INFO - Dataset validation passed for BitextRetailBanking
+2025-10-17 02:22:12,077 - chatbot_analytics.src.services.data_validator - INFO - Quality assessment for BitextRetailBanking: Overall=1.00, Completeness=1.00, Consistency=1.00
+2025-10-17 02:22:13,026 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BitextRetailBanking with 25545 conversations
+2025-10-17 02:22:13,031 - chatbot_analytics.src.services.data_preprocessor - INFO - Split dataset BitextRetailBanking: train=17881, val=3831, test=3833
+2025-10-17 02:22:13,112 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 727 conversations from Schema-Guided dataset
+2025-10-17 02:22:13,125 - chatbot_analytics.src.services.data_validator - INFO - Bitext dataset contains Q&A pairs (2 turns per conversation)
+2025-10-17 02:22:13,125 - chatbot_analytics.src.services.data_validator - INFO - Dataset validation passed for BitextRetailBanking
+2025-10-17 02:22:13,138 - chatbot_analytics.src.services.data_validator - INFO - Quality assessment for BitextRetailBanking: Overall=1.00, Completeness=1.00, Consistency=1.00
+2025-10-17 02:22:16,894 - chatbot_analytics.__main__ - INFO - Loading BANKING77 dataset...
+2025-10-17 02:22:16,895 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2025-10-17 02:22:16,895 - chatbot_analytics.src.repositories.dataset_loaders - ERROR - Error loading Dataset/BANKING77/data/train.json: Expecting value: line 9 column 1 (char 8)
+2025-10-17 02:23:07,258 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loading Bitext dataset from Dataset/BitextRetailBanking/bitext-retail-banking-llm-chatbot-training-dataset.csv
+2025-10-17 02:23:07,549 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 25545 conversations from Bitext dataset
+2025-10-17 02:23:07,566 - chatbot_analytics.src.services.data_validator - INFO - Bitext dataset contains Q&A pairs (2 turns per conversation)
+2025-10-17 02:23:07,566 - chatbot_analytics.src.services.data_validator - INFO - Dataset validation passed for BitextRetailBanking
+2025-10-17 02:23:07,581 - chatbot_analytics.src.services.data_validator - INFO - Quality assessment for BitextRetailBanking: Overall=1.00, Completeness=1.00, Consistency=1.00
+2025-10-17 02:23:08,593 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BitextRetailBanking with 25545 conversations
+2025-10-17 02:23:08,598 - chatbot_analytics.src.services.data_preprocessor - INFO - Split dataset BitextRetailBanking: train=17881, val=3831, test=3833
+2025-10-17 02:23:08,683 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 727 conversations from Schema-Guided dataset
+2025-10-17 02:23:08,696 - chatbot_analytics.src.services.data_validator - INFO - Bitext dataset contains Q&A pairs (2 turns per conversation)
+2025-10-17 02:23:08,696 - chatbot_analytics.src.services.data_validator - INFO - Dataset validation passed for BitextRetailBanking
+2025-10-17 02:23:08,711 - chatbot_analytics.src.services.data_validator - INFO - Quality assessment for BitextRetailBanking: Overall=1.00, Completeness=1.00, Consistency=1.00
+2025-10-17 02:23:12,362 - chatbot_analytics.__main__ - INFO - Loading BANKING77 dataset...
+2025-10-17 02:23:12,363 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2025-10-17 02:23:12,364 - chatbot_analytics.src.repositories.dataset_loaders - ERROR - Error loading Dataset/BANKING77/data/train.json: Expecting value: line 9 column 1 (char 8)
+2025-10-17 02:23:31,410 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loading Bitext dataset from Dataset/BitextRetailBanking/bitext-retail-banking-llm-chatbot-training-dataset.csv
+2025-10-17 02:23:31,696 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 25545 conversations from Bitext dataset
+2025-10-17 02:23:31,714 - chatbot_analytics.src.services.data_validator - INFO - Bitext dataset contains Q&A pairs (2 turns per conversation)
+2025-10-17 02:23:31,714 - chatbot_analytics.src.services.data_validator - INFO - Dataset validation passed for BitextRetailBanking
+2025-10-17 02:23:31,729 - chatbot_analytics.src.services.data_validator - INFO - Quality assessment for BitextRetailBanking: Overall=1.00, Completeness=1.00, Consistency=1.00
+2025-10-17 02:23:32,691 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BitextRetailBanking with 25545 conversations
+2025-10-17 02:23:32,695 - chatbot_analytics.src.services.data_preprocessor - INFO - Split dataset BitextRetailBanking: train=17881, val=3831, test=3833
+2025-10-17 02:23:32,779 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 727 conversations from Schema-Guided dataset
+2025-10-17 02:23:32,792 - chatbot_analytics.src.services.data_validator - INFO - Bitext dataset contains Q&A pairs (2 turns per conversation)
+2025-10-17 02:23:32,792 - chatbot_analytics.src.services.data_validator - INFO - Dataset validation passed for BitextRetailBanking
+2025-10-17 02:23:32,806 - chatbot_analytics.src.services.data_validator - INFO - Quality assessment for BitextRetailBanking: Overall=1.00, Completeness=1.00, Consistency=1.00
+2025-10-17 02:23:36,001 - chatbot_analytics.__main__ - INFO - Loading BANKING77 dataset...
+2025-10-17 02:23:36,002 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2025-10-17 02:23:36,021 - chatbot_analytics.src.repositories.dataset_loaders - ERROR - Error loading Dataset/BANKING77/data/val.json: Expecting value: line 9 column 1 (char 8)
+2025-10-17 02:24:12,381 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loading Bitext dataset from Dataset/BitextRetailBanking/bitext-retail-banking-llm-chatbot-training-dataset.csv
+2025-10-17 02:24:12,694 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 25545 conversations from Bitext dataset
+2025-10-17 02:24:12,711 - chatbot_analytics.src.services.data_validator - INFO - Bitext dataset contains Q&A pairs (2 turns per conversation)
+2025-10-17 02:24:12,712 - chatbot_analytics.src.services.data_validator - INFO - Dataset validation passed for BitextRetailBanking
+2025-10-17 02:24:12,727 - chatbot_analytics.src.services.data_validator - INFO - Quality assessment for BitextRetailBanking: Overall=1.00, Completeness=1.00, Consistency=1.00
+2025-10-17 02:24:13,688 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BitextRetailBanking with 25545 conversations
+2025-10-17 02:24:13,693 - chatbot_analytics.src.services.data_preprocessor - INFO - Split dataset BitextRetailBanking: train=17881, val=3831, test=3833
+2025-10-17 02:24:13,822 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 727 conversations from Schema-Guided dataset
+2025-10-17 02:24:13,834 - chatbot_analytics.src.services.data_validator - INFO - Bitext dataset contains Q&A pairs (2 turns per conversation)
+2025-10-17 02:24:13,834 - chatbot_analytics.src.services.data_validator - INFO - Dataset validation passed for BitextRetailBanking
+2025-10-17 02:24:13,849 - chatbot_analytics.src.services.data_validator - INFO - Quality assessment for BitextRetailBanking: Overall=1.00, Completeness=1.00, Consistency=1.00
+2025-10-17 02:24:17,160 - chatbot_analytics.__main__ - INFO - Loading BANKING77 dataset...
+2025-10-17 02:24:17,161 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2025-10-17 02:24:17,185 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2025-10-17 02:24:17,185 - chatbot_analytics.__main__ - INFO - Loaded dataset with 13085 conversations
+2025-10-17 02:24:17,186 - chatbot_analytics.__main__ - INFO - Found 78 unique intents
+2025-10-17 02:24:17,186 - chatbot_analytics.__main__ - INFO - Splitting dataset into train/val/test sets...
+2025-10-17 02:24:17,188 - chatbot_analytics.src.services.data_preprocessor - INFO - Split dataset BANKING77: train=9159, val=1962, test=1964
+2025-10-17 02:24:17,188 - chatbot_analytics.__main__ - INFO - Train size: 9159
+2025-10-17 02:24:17,188 - chatbot_analytics.__main__ - INFO - Validation size: 1962
+2025-10-17 02:24:17,188 - chatbot_analytics.__main__ - INFO - Test size: 1964
+2025-10-17 02:24:17,188 - chatbot_analytics.__main__ - INFO - Initializing intent classifier...
+2025-10-17 02:24:17,189 - chatbot_analytics.src.models.intent_classifier - INFO - Initializing IntentClassifier with model: bert-base-uncased
+2025-10-17 02:24:17,189 - chatbot_analytics.src.models.intent_classifier - INFO - Using device: cpu
+2025-10-17 02:24:17,189 - chatbot_analytics.src.models.intent_classifier - INFO - GPU available: False
+2025-10-17 02:24:17,189 - chatbot_analytics.src.models.intent_classifier - INFO - Batch size: 32
+2025-10-17 02:24:17,189 - chatbot_analytics.src.models.intent_classifier - INFO - Cache enabled: True (size: 1000)
+2025-10-17 02:24:17,189 - chatbot_analytics.__main__ - INFO - Starting training...
+2025-10-17 02:24:17,189 - chatbot_analytics.src.models.intent_classifier - INFO - Starting model training
+2025-10-17 02:24:17,191 - chatbot_analytics.src.models.intent_classifier - INFO - Created label mappings for 78 intents
+2025-10-17 02:24:17,191 - chatbot_analytics.src.models.intent_classifier - INFO - Loading tokenizer and model: bert-base-uncased
+2025-10-17 02:24:26,285 - chatbot_analytics.src.models.intent_classifier - INFO - Converting datasets to HuggingFace format
+2025-10-17 02:24:26,302 - chatbot_analytics.src.models.intent_classifier - INFO - Tokenizing datasets
+2025-10-17 02:25:26,661 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loading Bitext dataset from Dataset/BitextRetailBanking/bitext-retail-banking-llm-chatbot-training-dataset.csv
+2025-10-17 02:25:26,945 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 25545 conversations from Bitext dataset
+2025-10-17 02:25:26,962 - chatbot_analytics.src.services.data_validator - INFO - Bitext dataset contains Q&A pairs (2 turns per conversation)
+2025-10-17 02:25:26,962 - chatbot_analytics.src.services.data_validator - INFO - Dataset validation passed for BitextRetailBanking
+2025-10-17 02:25:26,976 - chatbot_analytics.src.services.data_validator - INFO - Quality assessment for BitextRetailBanking: Overall=1.00, Completeness=1.00, Consistency=1.00
+2025-10-17 02:25:27,982 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BitextRetailBanking with 25545 conversations
+2025-10-17 02:25:27,986 - chatbot_analytics.src.services.data_preprocessor - INFO - Split dataset BitextRetailBanking: train=17881, val=3831, test=3833
+2025-10-17 02:25:28,068 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 727 conversations from Schema-Guided dataset
+2025-10-17 02:25:28,080 - chatbot_analytics.src.services.data_validator - INFO - Bitext dataset contains Q&A pairs (2 turns per conversation)
+2025-10-17 02:25:28,080 - chatbot_analytics.src.services.data_validator - INFO - Dataset validation passed for BitextRetailBanking
+2025-10-17 02:25:28,095 - chatbot_analytics.src.services.data_validator - INFO - Quality assessment for BitextRetailBanking: Overall=1.00, Completeness=1.00, Consistency=1.00
+2025-10-17 02:25:31,219 - chatbot_analytics.__main__ - INFO - Loading BANKING77 dataset...
+2025-10-17 02:25:31,219 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2025-10-17 02:25:31,242 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2025-10-17 02:25:31,242 - chatbot_analytics.__main__ - INFO - Loaded dataset with 13085 conversations
+2025-10-17 02:25:31,243 - chatbot_analytics.__main__ - INFO - Found 78 unique intents
+2025-10-17 02:25:31,243 - chatbot_analytics.__main__ - INFO - Splitting dataset into train/val/test sets...
+2025-10-17 02:25:31,246 - chatbot_analytics.src.services.data_preprocessor - INFO - Split dataset BANKING77: train=9159, val=1962, test=1964
+2025-10-17 02:25:31,246 - chatbot_analytics.__main__ - INFO - Train size: 9159
+2025-10-17 02:25:31,246 - chatbot_analytics.__main__ - INFO - Validation size: 1962
+2025-10-17 02:25:31,246 - chatbot_analytics.__main__ - INFO - Test size: 1964
+2025-10-17 02:25:31,246 - chatbot_analytics.__main__ - INFO - Initializing intent classifier...
+2025-10-17 02:25:31,246 - chatbot_analytics.src.models.intent_classifier - INFO - Initializing IntentClassifier with model: bert-base-uncased
+2025-10-17 02:25:31,246 - chatbot_analytics.src.models.intent_classifier - INFO - Using device: cpu
+2025-10-17 02:25:31,246 - chatbot_analytics.src.models.intent_classifier - INFO - GPU available: False
+2025-10-17 02:25:31,246 - chatbot_analytics.src.models.intent_classifier - INFO - Batch size: 32
+2025-10-17 02:25:31,246 - chatbot_analytics.src.models.intent_classifier - INFO - Cache enabled: True (size: 1000)
+2025-10-17 02:25:31,246 - chatbot_analytics.__main__ - INFO - Starting training...
+2025-10-17 02:25:31,246 - chatbot_analytics.src.models.intent_classifier - INFO - Starting model training
+2025-10-17 02:25:31,247 - chatbot_analytics.src.models.intent_classifier - INFO - Created label mappings for 78 intents
+2025-10-17 02:25:31,247 - chatbot_analytics.src.models.intent_classifier - INFO - Loading tokenizer and model: bert-base-uncased
+2025-10-17 02:25:31,881 - chatbot_analytics.src.models.intent_classifier - INFO - Converting datasets to HuggingFace format
+2025-10-17 02:25:31,890 - chatbot_analytics.src.models.intent_classifier - INFO - Tokenizing datasets
+2025-10-17 02:25:34,126 - chatbot_analytics.src.models.intent_classifier - INFO - Training model...
+2025-10-17 02:29:43,236 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loading Bitext dataset from Dataset/BitextRetailBanking/bitext-retail-banking-llm-chatbot-training-dataset.csv
+2025-10-17 02:29:43,512 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 25545 conversations from Bitext dataset
+2025-10-17 02:29:43,529 - chatbot_analytics.src.services.data_validator - INFO - Bitext dataset contains Q&A pairs (2 turns per conversation)
+2025-10-17 02:29:43,529 - chatbot_analytics.src.services.data_validator - INFO - Dataset validation passed for BitextRetailBanking
+2025-10-17 02:29:43,544 - chatbot_analytics.src.services.data_validator - INFO - Quality assessment for BitextRetailBanking: Overall=1.00, Completeness=1.00, Consistency=1.00
+2025-10-17 02:29:44,495 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BitextRetailBanking with 25545 conversations
+2025-10-17 02:29:44,499 - chatbot_analytics.src.services.data_preprocessor - INFO - Split dataset BitextRetailBanking: train=17881, val=3831, test=3833
+2025-10-17 02:29:44,587 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 727 conversations from Schema-Guided dataset
+2025-10-17 02:29:44,600 - chatbot_analytics.src.services.data_validator - INFO - Bitext dataset contains Q&A pairs (2 turns per conversation)
+2025-10-17 02:29:44,600 - chatbot_analytics.src.services.data_validator - INFO - Dataset validation passed for BitextRetailBanking
+2025-10-17 02:29:44,614 - chatbot_analytics.src.services.data_validator - INFO - Quality assessment for BitextRetailBanking: Overall=1.00, Completeness=1.00, Consistency=1.00
+2025-10-17 02:29:48,181 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2025-10-17 02:29:48,203 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2025-10-17 02:29:48,206 - chatbot_analytics.src.services.data_preprocessor - INFO - Split dataset BANKING77: train=9159, val=1962, test=1964
+2025-10-17 02:30:02,675 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loading Bitext dataset from Dataset/BitextRetailBanking/bitext-retail-banking-llm-chatbot-training-dataset.csv
+2025-10-17 02:30:02,958 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 25545 conversations from Bitext dataset
+2025-10-17 02:30:02,975 - chatbot_analytics.src.services.data_validator - INFO - Bitext dataset contains Q&A pairs (2 turns per conversation)
+2025-10-17 02:30:02,975 - chatbot_analytics.src.services.data_validator - INFO - Dataset validation passed for BitextRetailBanking
+2025-10-17 02:30:02,990 - chatbot_analytics.src.services.data_validator - INFO - Quality assessment for BitextRetailBanking: Overall=1.00, Completeness=1.00, Consistency=1.00
+2025-10-17 02:30:03,927 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BitextRetailBanking with 25545 conversations
+2025-10-17 02:30:03,931 - chatbot_analytics.src.services.data_preprocessor - INFO - Split dataset BitextRetailBanking: train=17881, val=3831, test=3833
+2025-10-17 02:30:04,003 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 727 conversations from Schema-Guided dataset
+2025-10-17 02:30:04,015 - chatbot_analytics.src.services.data_validator - INFO - Bitext dataset contains Q&A pairs (2 turns per conversation)
+2025-10-17 02:30:04,015 - chatbot_analytics.src.services.data_validator - INFO - Dataset validation passed for BitextRetailBanking
+2025-10-17 02:30:04,028 - chatbot_analytics.src.services.data_validator - INFO - Quality assessment for BitextRetailBanking: Overall=1.00, Completeness=1.00, Consistency=1.00
+2025-10-17 02:30:07,327 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2025-10-17 02:30:07,349 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2025-10-17 02:30:07,352 - chatbot_analytics.src.services.data_preprocessor - INFO - Split dataset BANKING77: train=9159, val=1962, test=1964
+2025-10-17 02:30:07,355 - chatbot_analytics.src.models.intent_classifier - INFO - Initializing IntentClassifier with model: bert-base-uncased
+2025-10-17 02:30:07,355 - chatbot_analytics.src.models.intent_classifier - INFO - Using device: cpu
+2025-10-17 02:30:07,355 - chatbot_analytics.src.models.intent_classifier - INFO - GPU available: False
+2025-10-17 02:30:07,355 - chatbot_analytics.src.models.intent_classifier - INFO - Batch size: 32
+2025-10-17 02:30:07,355 - chatbot_analytics.src.models.intent_classifier - INFO - Cache enabled: True (size: 1000)
+2025-10-17 02:30:07,355 - chatbot_analytics.src.models.intent_classifier - INFO - Starting model training
+2025-10-17 02:31:59,243 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loading Bitext dataset from Dataset/BitextRetailBanking/bitext-retail-banking-llm-chatbot-training-dataset.csv
+2025-10-17 02:31:59,522 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 25545 conversations from Bitext dataset
+2025-10-17 02:31:59,539 - chatbot_analytics.src.services.data_validator - INFO - Bitext dataset contains Q&A pairs (2 turns per conversation)
+2025-10-17 02:31:59,539 - chatbot_analytics.src.services.data_validator - INFO - Dataset validation passed for BitextRetailBanking
+2025-10-17 02:31:59,554 - chatbot_analytics.src.services.data_validator - INFO - Quality assessment for BitextRetailBanking: Overall=1.00, Completeness=1.00, Consistency=1.00
+2025-10-17 02:32:00,523 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BitextRetailBanking with 25545 conversations
+2025-10-17 02:32:00,527 - chatbot_analytics.src.services.data_preprocessor - INFO - Split dataset BitextRetailBanking: train=17881, val=3831, test=3833
+2025-10-17 02:32:00,609 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 727 conversations from Schema-Guided dataset
+2025-10-17 02:32:00,621 - chatbot_analytics.src.services.data_validator - INFO - Bitext dataset contains Q&A pairs (2 turns per conversation)
+2025-10-17 02:32:00,621 - chatbot_analytics.src.services.data_validator - INFO - Dataset validation passed for BitextRetailBanking
+2025-10-17 02:32:00,635 - chatbot_analytics.src.services.data_validator - INFO - Quality assessment for BitextRetailBanking: Overall=1.00, Completeness=1.00, Consistency=1.00
+2025-10-17 02:32:03,781 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2025-10-17 02:32:03,841 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2025-10-17 02:32:03,844 - chatbot_analytics.src.services.data_preprocessor - INFO - Split dataset BANKING77: train=9159, val=1962, test=1964
+2025-10-17 02:32:03,844 - chatbot_analytics.src.models.intent_classifier - INFO - Initializing IntentClassifier with model: bert-base-uncased
+2025-10-17 02:32:03,844 - chatbot_analytics.src.models.intent_classifier - INFO - Using device: cpu
+2025-10-17 02:32:03,844 - chatbot_analytics.src.models.intent_classifier - INFO - GPU available: False
+2025-10-17 02:32:03,844 - chatbot_analytics.src.models.intent_classifier - INFO - Batch size: 32
+2025-10-17 02:32:03,844 - chatbot_analytics.src.models.intent_classifier - INFO - Cache enabled: True (size: 1000)
+2025-10-17 02:32:03,844 - chatbot_analytics.src.models.intent_classifier - INFO - Starting model training
+2025-10-17 02:32:03,846 - chatbot_analytics.src.models.intent_classifier - INFO - Created label mappings for 78 intents
+2025-10-17 02:32:03,846 - chatbot_analytics.src.models.intent_classifier - INFO - Loading tokenizer and model: bert-base-uncased
+2025-10-17 02:32:04,529 - chatbot_analytics.src.models.intent_classifier - INFO - Converting datasets to HuggingFace format
+2025-10-17 02:32:04,545 - chatbot_analytics.src.models.intent_classifier - INFO - Tokenizing datasets
+2025-10-17 02:32:08,069 - chatbot_analytics.src.models.intent_classifier - INFO - Training model...
+2025-10-17 10:37:10,911 - chatbot_analytics.src.services.experiment_tracker - INFO - ExperimentTracker initialized at /Users/Development/chatbotAnalyticsLab/experiments/experiments.json
+2025-10-17 10:37:17,805 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2025-10-17 10:37:17,880 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2025-10-17 10:37:18,024 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BANKING77 with 13085 conversations
+2025-10-17 10:37:18,929 - chatbot_analytics.src.services.conversation_analyzer - INFO - Analyzed dialogue flow for 200 conversations (avg_turns=1.00)
+2025-10-17 10:37:20,846 - chatbot_analytics.src.services.sentiment_analyzer - INFO - Calculated sentiment for 13085 conversations (avg_user=-0.027, avg_assistant=0.000)
+2025-10-17 10:37:36,783 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2025-10-17 10:37:36,814 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2025-10-17 10:37:36,893 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BANKING77 with 13085 conversations
+2025-10-17 10:37:47,309 - chatbot_analytics.src.services.conversation_analyzer - INFO - Analyzed dialogue flow for 200 conversations (avg_turns=1.00)
+2025-10-17 10:37:50,885 - chatbot_analytics.src.services.sentiment_analyzer - INFO - Calculated sentiment for 13085 conversations (avg_user=-0.027, avg_assistant=0.000)
+2025-10-17 11:57:59,951 - chatbot_analytics.src.services.backup_manager - INFO - Backed up dataset BackupDataset (banking77) to /private/var/folders/t3/6j1k1r6d2qx0d74d8tbj1q1r0000gn/T/pytest-of-umitarslan/pytest-1/test_backup_and_restore0/backups/banking77/BackupDataset/20251017_095759.json
+2025-10-17 11:57:59,953 - chatbot_analytics.src.services.backup_manager - INFO - Restored dataset RestoredDataset (banking77) from /private/var/folders/t3/6j1k1r6d2qx0d74d8tbj1q1r0000gn/T/pytest-of-umitarslan/pytest-1/test_backup_and_restore0/backups/banking77/BackupDataset/20251017_095759.json
+2025-10-17 12:01:09,989 - chatbot_analytics.src.services.backup_manager - INFO - Backed up dataset BackupDataset (banking77) to /private/var/folders/t3/6j1k1r6d2qx0d74d8tbj1q1r0000gn/T/pytest-of-umitarslan/pytest-2/test_backup_and_restore0/backups/banking77/BackupDataset/20251017_100109.json
+2025-10-17 12:01:09,991 - chatbot_analytics.src.services.backup_manager - INFO - Restored dataset RestoredDataset (banking77) from /private/var/folders/t3/6j1k1r6d2qx0d74d8tbj1q1r0000gn/T/pytest-of-umitarslan/pytest-2/test_backup_and_restore0/backups/banking77/BackupDataset/20251017_100109.json
+2025-10-17 12:01:10,000 - chatbot_analytics.src.services.conversation_analyzer - INFO - Analyzed dialogue flow for 200 conversations (avg_turns=6.00)
+2025-10-17 12:02:19,043 - chatbot_analytics.src.services.backup_manager - INFO - Backed up dataset BackupDataset (banking77) to /private/var/folders/t3/6j1k1r6d2qx0d74d8tbj1q1r0000gn/T/pytest-of-umitarslan/pytest-3/test_backup_and_restore0/backups/banking77/BackupDataset/20251017_100219.json
+2025-10-17 12:02:19,045 - chatbot_analytics.src.services.backup_manager - INFO - Restored dataset RestoredDataset (banking77) from /private/var/folders/t3/6j1k1r6d2qx0d74d8tbj1q1r0000gn/T/pytest-of-umitarslan/pytest-3/test_backup_and_restore0/backups/banking77/BackupDataset/20251017_100219.json
+2025-10-17 12:02:19,052 - chatbot_analytics.src.services.conversation_analyzer - INFO - Analyzed dialogue flow for 200 conversations (avg_turns=6.00)
+2025-10-17 13:50:31,078 - chatbot_analytics.src.services.experiment_tracker - INFO - ExperimentTracker initialized at /Users/Development/chatbotAnalyticsLab/experiments/experiments.json
+2025-10-17 15:21:08,965 - chatbot_analytics.src.services.backup_manager - INFO - Backed up dataset BackupDataset (banking77) to /private/var/folders/t3/6j1k1r6d2qx0d74d8tbj1q1r0000gn/T/pytest-of-umitarslan/pytest-0/test_backup_and_restore0/backups/banking77/BackupDataset/20251017_132108.json
+2025-10-17 15:21:08,966 - chatbot_analytics.src.services.backup_manager - INFO - Restored dataset RestoredDataset (banking77) from /private/var/folders/t3/6j1k1r6d2qx0d74d8tbj1q1r0000gn/T/pytest-of-umitarslan/pytest-0/test_backup_and_restore0/backups/banking77/BackupDataset/20251017_132108.json
+2025-10-17 15:21:08,974 - chatbot_analytics.src.services.conversation_analyzer - INFO - Analyzed dialogue flow for 200 conversations (avg_turns=6.00)
+2025-10-17 15:24:18,936 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2025-10-17 15:24:18,959 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2025-10-17 15:24:23,709 - chatbot_analytics.__main__ - INFO - Creating sample dataset...
+2025-10-17 15:24:23,709 - chatbot_analytics.__main__ - INFO - Created dataset with 150 conversations
+2025-10-17 15:24:23,709 - chatbot_analytics.__main__ - INFO - Unique intents: ['card_issue', 'change_pin', 'check_balance', 'interest_rates', 'transfer_money']
+2025-10-17 15:24:23,709 - chatbot_analytics.__main__ - INFO - Train: 105, Val: 22, Test: 23
+2025-10-17 15:24:23,709 - chatbot_analytics.__main__ - INFO - 
+Testing IntentClassifier initialization...
+2025-10-17 15:24:23,709 - chatbot_analytics.src.models.intent_classifier - INFO - Initializing IntentClassifier with model: bert-base-uncased
+2025-10-17 15:24:23,709 - chatbot_analytics.src.models.intent_classifier - INFO - Using device: cpu
+2025-10-17 15:24:23,709 - chatbot_analytics.src.models.intent_classifier - INFO - GPU available: False
+2025-10-17 15:24:23,709 - chatbot_analytics.src.models.intent_classifier - INFO - Batch size: 32
+2025-10-17 15:24:23,710 - chatbot_analytics.src.models.intent_classifier - INFO - Cache enabled: True (size: 1000)
+2025-10-17 15:24:23,710 - chatbot_analytics.__main__ - INFO - ✓ Classifier initialized successfully
+2025-10-17 15:24:23,710 - chatbot_analytics.__main__ - INFO - 
+Testing label preparation...
+2025-10-17 15:24:23,710 - chatbot_analytics.src.models.intent_classifier - INFO - Created label mappings for 5 intents
+2025-10-17 15:24:23,710 - chatbot_analytics.__main__ - INFO - ✓ Created mappings for 5 labels
+2025-10-17 15:24:23,710 - chatbot_analytics.__main__ - INFO -   Labels: ['card_issue', 'change_pin', 'check_balance', 'interest_rates', 'transfer_money']
+2025-10-17 15:24:23,710 - chatbot_analytics.__main__ - INFO - 
+Testing dataset conversion...
