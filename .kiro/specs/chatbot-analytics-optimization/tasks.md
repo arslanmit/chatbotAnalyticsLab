@@ -409,7 +409,7 @@
     - Create final PDF version for submission
     - _Requirements: 8.1, 9.1, 10.1_
 
-- [-] 18. Create presentation materials
+- [x] 18. Create presentation materials
   - [x] 18.1 Design presentation slides
     - Create title slide with project overview
     - Design slides for each major section (Tasks 1-5)

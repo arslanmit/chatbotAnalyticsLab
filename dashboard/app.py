@@ -5,7 +5,7 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
-import pandas as pd
+import pandas as pd  # type: ignore[import-untyped]
 import streamlit as st
 import time
 
@@ -250,6 +250,16 @@ def dataset_selector(label: str = "Dataset") -> DatasetType:
     return st.selectbox(label, dataset_options, format_func=lambda dt: dt.value.replace("_", " ").title())
 
 
+def _rerun_app() -> None:
+    """Trigger a Streamlit rerun while remaining compatible with older/newer APIs."""
+    for attr in ("experimental_rerun", "rerun"):
+        rerun = getattr(st, attr, None)
+        if callable(rerun):
+            rerun()
+            return
+    raise RuntimeError("Streamlit rerun function is unavailable; check Streamlit version.")
+
+
 def render_settings():
     st.title("Settings & Help")
     st.write("Configure upcoming features and review documentation links.")
@@ -285,13 +295,13 @@ if st.sidebar.button("Refresh Data"):
     load_experiments.cache_clear()  # type: ignore[attr-defined]
     load_dataset.cache_clear()  # type: ignore[attr-defined]
     st.session_state["last_refresh"] = time.time()
-    st.experimental_rerun()
+    _rerun_app()
 
 if auto_refresh and (time.time() - st.session_state["last_refresh"]) > interval:
     load_experiments.cache_clear()  # type: ignore[attr-defined]
     load_dataset.cache_clear()  # type: ignore[attr-defined]
     st.session_state["last_refresh"] = time.time()
-    st.experimental_rerun()
+    _rerun_app()
 
 renderer = PAGES[selection]
 renderer()
