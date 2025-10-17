@@ -1,6 +1,6 @@
 # Chatbot Analytics System
 
-## Development Setup
+# Development Setup
 
 ```bash
 python3 -m venv venv
@@ -9,7 +9,12 @@ pip install -r requirements.txt
 python3 -m pytest
 ```
 
-## Running with Docker Compose
+# Documentation
+
+- [Deployment Guide](docs/DEPLOYMENT.md)
+- [API Reference (Quick)](docs/API.md)
+
+# Running with Docker Compose
 
 ```bash
 docker compose build
