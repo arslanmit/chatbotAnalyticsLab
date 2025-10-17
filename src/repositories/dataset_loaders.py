@@ -71,9 +71,16 @@ class Banking77Loader(DatasetLoaderInterface):
 
         # Load train, validation, and test splits
         for split_name in ["train", "val", "test"]:
-            split_file = data_dir / f"{split_name}.json"
-            if split_file.exists():
-                conversations.extend(self._load_split(split_file, split_name))
+            # Try CSV first (actual BANKING77 format)
+            csv_file = data_dir / f"{split_name}.csv"
+            json_file = data_dir / f"{split_name}.json"
+
+            if csv_file.exists():
+                conversations.extend(self._load_split(csv_file, split_name))
+            elif (
+                json_file.exists() and split_name != "val"
+            ):  # Skip val.json as it's HTML
+                conversations.extend(self._load_split(json_file, split_name))
 
         logger.info(f"Loaded {len(conversations)} conversations from BANKING77 dataset")
 
@@ -89,10 +96,41 @@ class Banking77Loader(DatasetLoaderInterface):
         )
 
     def _load_split(self, file_path: Path, split_name: str) -> List[Conversation]:
-        """Load a single split file."""
+        """Load a single split file (JSON or CSV format)."""
         conversations = []
 
         try:
+            # Try CSV format first (actual BANKING77 format)
+            if file_path.suffix == ".csv" or not file_path.exists():
+                csv_path = file_path.with_suffix(".csv")
+                if csv_path.exists():
+                    import csv
+
+                    with open(csv_path, "r", encoding="utf-8") as f:
+                        reader = csv.reader(f)
+                        for idx, row in enumerate(reader):
+                            if len(row) >= 2:
+                                text = row[0]
+                                intent = row[1]
+
+                                # Create a single-turn conversation
+                                turn = ConversationTurn(
+                                    speaker=Speaker.USER,
+                                    text=text,
+                                    intent=intent,
+                                    confidence=1.0,
+                                )
+
+                                conversation = Conversation(
+                                    id=f"banking77_{split_name}_{idx}",
+                                    turns=[turn],
+                                    source_dataset=DatasetType.BANKING77,
+                                    metadata={"split": split_name, "intent": intent},
+                                )
+                                conversations.append(conversation)
+                    return conversations
+
+            # Fallback to JSON format
             with open(file_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
 
