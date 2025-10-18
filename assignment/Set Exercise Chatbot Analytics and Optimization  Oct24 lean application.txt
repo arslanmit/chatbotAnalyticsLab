@@ -1,3 +1,17 @@
+
+Learning Outcomes:
+LO1: Design and implement analytics strategies for chatbots, apply natural language 
+processing (NLP) techniques to analyse user interactions and sentiment, fostering 
+innovation in chatbot performance evaluation.
+LO2: Conduct comprehensive research on industry-specific chatbot optimization 
+challenges, critically analyse case studies and emerging trends to develop data-driven 
+optimization strategies tailored to real-world applications.
+LO3: Actively engage with practical projects to optimize chatbot performance, focusing 
+on user-centric design, personalized responses, and ethical considerations, and 
+communicate their findings effectively to non-technical stakeholders, bridging the gap 
+between theory and practical implementation.
+
+
 Overview: 
 
 This assignment challenges students to explore, implement, and critically evaluate a wide 
@@ -23,18 +37,6 @@ healthcare, or e-commerce sectors).
 or ROI analysis to optimize chatbot performance.
 ▪ Compare these approaches with current trends such as adaptive dialog flow models, 
 multivariate testing, and prompt engineering for LLMs.
-
-Learning Outcomes:
-LO1: Design and implement analytics strategies for chatbots, apply natural language 
-processing (NLP) techniques to analyse user interactions and sentiment, fostering 
-innovation in chatbot performance evaluation.
-LO2: Conduct comprehensive research on industry-specific chatbot optimization 
-challenges, critically analyse case studies and emerging trends to develop data-driven 
-optimization strategies tailored to real-world applications.
-LO3: Actively engage with practical projects to optimize chatbot performance, focusing 
-on user-centric design, personalized responses, and ethical considerations, and 
-communicate their findings effectively to non-technical stakeholders, bridging the gap 
-between theory and practical implementation.
 
 Task 3: Practical Implementation and Evaluation of Chatbot Analytics (25 Marks) (LO3)
 ▪ Choose one of the following chatbot options as your base:
