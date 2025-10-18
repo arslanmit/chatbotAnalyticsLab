@@ -6,6 +6,10 @@ services:
       context: .
       dockerfile: Dockerfile.api
     container_name: chatbot-analytics-api
+    deploy:
+      resources:
+        limits:
+          memory: 1g
     ports:
       - "8000:8000"
     environment:
@@ -24,6 +28,10 @@ services:
       context: .
       dockerfile: Dockerfile.dashboard
     container_name: chatbot-analytics-dashboard
+    deploy:
+      resources:
+        limits:
+          memory: 1g
     ports:
       - "8501:8501"
     environment:

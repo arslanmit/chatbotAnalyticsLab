@@ -260,3 +260,8 @@ Testing label preparation...
 2025-10-17 15:24:23,710 - chatbot_analytics.__main__ - INFO -   Labels: ['card_issue', 'change_pin', 'check_balance', 'interest_rates', 'transfer_money']
 2025-10-17 15:24:23,710 - chatbot_analytics.__main__ - INFO - 
 Testing dataset conversion...
+2025-10-18 09:54:49,322 - chatbot_analytics.src.services.experiment_tracker - INFO - ExperimentTracker initialized at /app/experiments/experiments.json
+2025-10-18 09:54:57,323 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2025-10-18 09:54:57,365 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2025-10-18 09:54:57,412 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BANKING77 with 13085 conversations
+2025-10-18 09:55:09,366 - chatbot_analytics.src.services.sentiment_analyzer - INFO - Calculated sentiment for 13085 conversations (avg_user=-0.027, avg_assistant=0.000)
