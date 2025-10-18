@@ -265,3 +265,20 @@ Testing dataset conversion...
 2025-10-18 09:54:57,365 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
 2025-10-18 09:54:57,412 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BANKING77 with 13085 conversations
 2025-10-18 09:55:09,366 - chatbot_analytics.src.services.sentiment_analyzer - INFO - Calculated sentiment for 13085 conversations (avg_user=-0.027, avg_assistant=0.000)
+2025-10-18 10:05:52,510 - chatbot_analytics.src.services.experiment_tracker - INFO - ExperimentTracker initialized at /app/experiments/experiments.json
+2025-10-18 10:05:56,329 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2025-10-18 10:05:56,392 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2025-10-18 10:05:56,443 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BANKING77 with 13085 conversations
+2025-10-18 10:05:57,374 - chatbot_analytics.src.services.conversation_analyzer - INFO - Analyzed dialogue flow for 200 conversations (avg_turns=1.00)
+2025-10-18 10:05:59,918 - chatbot_analytics.src.services.conversation_analyzer - INFO - Analyzed dialogue flow for 200 conversations (avg_turns=1.00)
+2025-10-18 10:06:06,715 - chatbot_analytics.src.services.sentiment_analyzer - INFO - Calculated sentiment for 13085 conversations (avg_user=-0.027, avg_assistant=0.000)
+2025-10-18 12:20:22,512 - chatbot_analytics.src.services.experiment_tracker - INFO - ExperimentTracker initialized at /app/experiments/experiments.json
+2025-10-18 12:21:06,093 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2025-10-18 12:21:06,160 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2025-10-18 12:21:06,215 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BANKING77 with 13085 conversations
+2025-10-18 14:25:29,839 - chatbot_analytics.src.services.backup_manager - INFO - Backed up dataset BackupDataset (banking77) to /private/var/folders/t3/6j1k1r6d2qx0d74d8tbj1q1r0000gn/T/pytest-of-umitarslan/pytest-0/test_backup_and_restore0/backups/banking77/BackupDataset/20251018_122529.json
+2025-10-18 14:25:29,841 - chatbot_analytics.src.services.backup_manager - INFO - Restored dataset RestoredDataset (banking77) from /private/var/folders/t3/6j1k1r6d2qx0d74d8tbj1q1r0000gn/T/pytest-of-umitarslan/pytest-0/test_backup_and_restore0/backups/banking77/BackupDataset/20251018_122529.json
+2025-10-18 14:25:29,849 - chatbot_analytics.src.services.conversation_analyzer - INFO - Analyzed dialogue flow for 200 conversations (avg_turns=6.00)
+2025-10-18 14:29:12,029 - chatbot_analytics.src.services.backup_manager - INFO - Backed up dataset BackupDataset (banking77) to /private/var/folders/t3/6j1k1r6d2qx0d74d8tbj1q1r0000gn/T/pytest-of-umitarslan/pytest-1/test_backup_and_restore0/backups/banking77/BackupDataset/20251018_122912.json
+2025-10-18 14:29:12,036 - chatbot_analytics.src.services.backup_manager - INFO - Restored dataset RestoredDataset (banking77) from /private/var/folders/t3/6j1k1r6d2qx0d74d8tbj1q1r0000gn/T/pytest-of-umitarslan/pytest-1/test_backup_and_restore0/backups/banking77/BackupDataset/20251018_122912.json
+2025-10-18 14:29:12,056 - chatbot_analytics.src.services.conversation_analyzer - INFO - Analyzed dialogue flow for 200 conversations (avg_turns=6.00)

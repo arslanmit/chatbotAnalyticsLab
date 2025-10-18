@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 
-from io import BytesIO
 from typing import Any, Dict, List
 
-import pandas as pd
-from fpdf import FPDF
+import pandas as pd  # type: ignore[import-untyped]
+from fpdf import FPDF  # type: ignore[import-untyped]
 
 
 def _safe(text: Any) -> str:
@@ -16,6 +15,16 @@ def _safe(text: Any) -> str:
 def experiments_to_csv(experiments: List[Dict]) -> bytes:
     df = pd.json_normalize(experiments)
     return df.to_csv(index=False).encode("utf-8")
+
+
+def _pdf_bytes(pdf: FPDF) -> bytes:
+    """Return the PDF contents as bytes regardless of FPDF backend behaviour."""
+    output = pdf.output(dest="S")
+    if isinstance(output, bytes):
+        return output
+    if isinstance(output, str):
+        return output.encode("latin-1")
+    raise TypeError(f"Unexpected type from FPDF.output: {type(output)!r}")
 
 
 def build_experiments_pdf(experiments: List[Dict], title: str = "Experiment Summary") -> bytes:
@@ -30,9 +39,7 @@ def build_experiments_pdf(experiments: List[Dict], title: str = "Experiment Summ
         pdf.multi_cell(0, 7, txt=_safe(line))
         pdf.ln(1)
 
-    buffer = BytesIO()
-    pdf.output(buffer)
-    return buffer.getvalue()
+    return _pdf_bytes(pdf)
 
 
 def analytics_to_csv(data: Dict[str, List[Dict]]) -> bytes:
@@ -65,6 +72,4 @@ def analytics_to_pdf(title: str, metrics: Dict[str, str], tables: Dict[str, List
             pdf.multi_cell(0, 6, _safe(line))
             pdf.ln(1)
 
-    buffer = BytesIO()
-    pdf.output(buffer)
-    return buffer.getvalue()
+    return _pdf_bytes(pdf)
