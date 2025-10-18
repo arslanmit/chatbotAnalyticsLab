@@ -1,116 +1,82 @@
-.PHONY: help demo train test verify batch optimize main clean install check-deps setup-venv
+.PHONY: help build-api build-dashboard build-all push-api push-dashboard push-all compose-up compose-down compose-logs compose-ps restart shell-api shell-dashboard clean-images clean-volumes
 
-# Python virtual environment
-VENV = venv
-PYTHON = $(VENV)/bin/python3
-PIP = $(VENV)/bin/pip3
+# Docker-centric workflow for Chatbot Analytics
+DOCKER ?= docker
+DOCKER_COMPOSE ?= docker compose
+COMPOSE_FILE ?= docker-compose.yml
+REGISTRY ?=
+TAG ?= latest
 
-# Default target
+IMAGE_PREFIX := $(if $(strip $(REGISTRY)),$(REGISTRY)/,)
+API_IMAGE := $(IMAGE_PREFIX)chatbot-analytics-api
+DASHBOARD_IMAGE := $(IMAGE_PREFIX)chatbot-analytics-dashboard
+API_IMAGE_TAGGED := $(API_IMAGE):$(TAG)
+DASHBOARD_IMAGE_TAGGED := $(DASHBOARD_IMAGE):$(TAG)
+
 help:
-	@echo "Chatbot Analytics & Optimization - Available Commands"
-	@echo "======================================================"
+	@echo "Chatbot Analytics Docker Commands"
+	@echo "---------------------------------"
+	@echo "Images:"
+	@echo "  make build-api          Build the API image ($(API_IMAGE_TAGGED))"
+	@echo "  make build-dashboard    Build the dashboard image ($(DASHBOARD_IMAGE_TAGGED))"
+	@echo "  make build-all          Build both project images"
+	@echo "  make push-api           Push the API image"
+	@echo "  make push-dashboard     Push the dashboard image"
+	@echo "  make push-all           Push both project images"
 	@echo ""
-	@echo "Setup:"
-	@echo "  make setup-venv       - Create Python virtual environment"
-	@echo "  make install          - Install Python dependencies"
-	@echo "  make install-gpu      - Install dependencies with GPU support (CUDA 11.8)"
-	@echo "  make check-deps       - Check if dependencies are installed"
-	@echo ""
-	@echo "Data Pipeline:"
-	@echo "  make demo             - Run dataset pipeline demo (load, validate, preprocess)"
-	@echo ""
-	@echo "Intent Classification:"
-	@echo "  make train            - Train BERT-based intent classifier"
-	@echo "  make test             - Test trained model on sample queries"
-	@echo "  make verify           - Comprehensive model evaluation with metrics"
-	@echo "  make batch            - Batch processing & optimization demo"
-	@echo ""
-	@echo "Application:"
-	@echo "  make main             - Run main application"
+	@echo "Compose:"
+	@echo "  make compose-up         Start services with docker compose"
+	@echo "  make compose-down       Stop services and remove containers"
+	@echo "  make restart            Restart services (down + up)"
+	@echo "  make compose-logs       Tail compose logs (Ctrl+C to exit)"
+	@echo "  make compose-ps         Show running compose services"
 	@echo ""
 	@echo "Utilities:"
-	@echo "  make clean            - Remove cache files and temporary data"
-	@echo "  make clean-models     - Remove trained models"
+	@echo "  make shell-api          Run an interactive shell in the API image"
+	@echo "  make shell-dashboard    Run an interactive shell in the dashboard image"
+	@echo "  make clean-images       Remove local images for the project"
+	@echo "  make clean-volumes      Remove compose-managed volumes"
 	@echo ""
+	@echo "Set REGISTRY=<registry> and TAG=<tag> to customize image destinations."
 
-# Setup commands
-setup-venv:
-	@echo "Creating virtual environment..."
-	python3 -m venv venv
-	@echo "Virtual environment created! Activate with: source venv/bin/activate"
+build-api:
+	$(DOCKER) build --pull --rm -f Dockerfile.api -t $(API_IMAGE_TAGGED) .
 
-install: setup-venv
-	@echo "Installing dependencies..."
-	$(PIP) install -r requirements.txt
-	@echo "Dependencies installed!"
+build-dashboard:
+	$(DOCKER) build --pull --rm -f Dockerfile.dashboard -t $(DASHBOARD_IMAGE_TAGGED) .
 
-install-gpu: setup-venv
-	@echo "Installing dependencies with GPU support (CUDA 11.8)..."
-	$(PIP) install -r requirements.txt
-	$(PIP) install torch --index-url https://download.pytorch.org/whl/cu118
-	@echo "Dependencies with GPU support installed!"
+build-all: build-api build-dashboard
 
-check-deps:
-	@echo "Checking dependencies..."
-	@$(PYTHON) -c "import torch; print(f'PyTorch: {torch.__version__}')"
-	@$(PYTHON) -c "import transformers; print(f'Transformers: {transformers.__version__}')"
-	@$(PYTHON) -c "import datasets; print(f'Datasets: {datasets.__version__}')"
-	@$(PYTHON) -c "import pandas; print(f'Pandas: {pandas.__version__}')"
-	@$(PYTHON) -c "import torch; print(f'CUDA Available: {torch.cuda.is_available()}')"
+push-api:
+	$(DOCKER) push $(API_IMAGE_TAGGED)
 
-# Data pipeline
-demo:
-	@echo "Running dataset pipeline demo..."
-	PYTHONPATH=. $(PYTHON) examples/dataset_pipeline_demo.py
+push-dashboard:
+	$(DOCKER) push $(DASHBOARD_IMAGE_TAGGED)
 
-# Intent classification
-train:
-	@echo "Training intent classifier..."
-	$(PYTHON) examples/train_intent_classifier.py
+push-all: push-api push-dashboard
 
-train-quick:
-	@echo "Quick training (1 epoch, CPU-only)..."
-	$(PYTHON) examples/train_intent_classifier_quick.py
+compose-up:
+	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) up -d
 
-test:
-	@echo "Testing intent classifier..."
-	$(PYTHON) examples/test_intent_classifier_basic.py
+compose-down:
+	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) down
 
-verify:
-	@echo "Verifying intent classifier..."
-	$(PYTHON) examples/verify_intent_classifier.py
+restart: compose-down compose-up
 
-batch:
-	@echo "Running batch optimization demo..."
-	$(PYTHON) examples/test_batch_optimization.py
+compose-logs:
+	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) logs -f
 
-optimize: batch
+compose-ps:
+	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) ps
 
-# Main application
-main:
-	@echo "Running main application..."
-	PYTHONPATH=. $(PYTHON) src/main.py
+shell-api:
+	$(DOCKER) run --rm -it $(API_IMAGE_TAGGED) /bin/bash
 
-# Cleanup
-clean:
-	@echo "Cleaning cache files..."
-	find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
-	find . -type f -name "*.pyc" -delete
-	find . -type f -name "*.pyo" -delete
-	find . -type f -name ".DS_Store" -delete
-	@echo "Cache cleaned!"
+shell-dashboard:
+	$(DOCKER) run --rm -it $(DASHBOARD_IMAGE_TAGGED) /bin/bash
 
-clean-models:
-	@echo "Removing trained models..."
-	rm -rf models/
-	@echo "Models removed!"
+clean-images:
+	-$(DOCKER) image rm -f $(API_IMAGE_TAGGED) $(DASHBOARD_IMAGE_TAGGED)
 
-# Quick workflow shortcuts
-quick-start: demo train test
-	@echo "Quick start complete!"
-
-full-pipeline: demo train-quick test
-	@echo "Full pipeline complete!"
-
-full-pipeline-complete: demo train verify batch
-	@echo "Complete pipeline with full training done!"
+clean-volumes:
+	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) down -v
