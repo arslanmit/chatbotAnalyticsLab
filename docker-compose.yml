@@ -9,7 +9,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 8g
+          memory: 512mb
     ports:
       - "8000:8000"
     environment:
@@ -31,7 +31,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 8g
+          memory: 512mb
     ports:
       - "8501:8501"
     environment:
