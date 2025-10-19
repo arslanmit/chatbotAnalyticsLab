@@ -208,3 +208,10 @@ __marimo__/
 assignment/
 .kiro/
 markdown/
+.kiro
+.kiro/specs/
+.kiro/steering/
+.kiro/settings/
+.kiro/specs
+.kiro/steering
+.kiro/settings
