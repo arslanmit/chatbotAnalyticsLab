@@ -37,6 +37,12 @@
             "value": "log",
             "scope": "RUN_AND_BUILD_TIME"
           }
+        ],
+        "routes": [
+          {
+            "path": "/api",
+            "preserve_path_prefix": false
+          }
         ]
       },
       {
@@ -68,6 +74,12 @@
             "value": "/workspace/models/cache",
             "scope": "RUN_AND_BUILD_TIME"
           }
+        ],
+        "routes": [
+          {
+            "path": "/",
+            "preserve_path_prefix": false
+          }
         ]
       }
     ],
@@ -81,60 +93,6 @@
     ],
     "features": [
       "buildpack-stack=ubuntu-22"
-    ],
-    "ingress": {
-      "rules": [
-        {
-          "match": {
-            "path": {
-              "prefix": "/dashboard"
-            }
-          },
-          "component": {
-            "name": "dashboard"
-          }
-        },
-        {
-          "match": {
-            "path": {
-              "prefix": "/static"
-            }
-          },
-          "component": {
-            "name": "dashboard"
-          }
-        },
-        {
-          "match": {
-            "path": {
-              "prefix": "/_stcore"
-            }
-          },
-          "component": {
-            "name": "dashboard"
-          }
-        },
-        {
-          "match": {
-            "path": {
-              "prefix": "/favicon"
-            }
-          },
-          "component": {
-            "name": "dashboard"
-          }
-        },
-        {
-          "match": {
-            "path": {
-              "prefix": "/"
-            }
-          },
-          "component": {
-            "name": "api"
-          }
-        }
-      ]
-    }
+    ]
   }
 }
