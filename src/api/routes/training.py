@@ -5,9 +5,14 @@ Model training and optimization endpoints.
 import uuid
 from typing import Dict, Any
 
-from fastapi import APIRouter, BackgroundTasks, Depends
+from fastapi import APIRouter, BackgroundTasks, HTTPException, status
 
-from src.api.dependencies import build_training_pipeline, build_hyperparameter_optimizer
+from src.api.dependencies import (
+    OptionalDependencyUnavailable,
+    build_training_pipeline,
+    build_hyperparameter_optimizer,
+    create_training_pipeline_config,
+)
 from src.api.schemas.training import (
     TrainingRunRequest,
     TrainingRunResponse,
@@ -16,7 +21,6 @@ from src.api.schemas.training import (
 )
 from src.config.settings import settings
 from src.models.core import TrainingConfig
-from src.services.training_pipeline import TrainingPipelineConfig
 
 router = APIRouter()
 
@@ -30,12 +34,18 @@ async def trigger_training(
     Kick off an automated training pipeline run.
     """
     training_config = _build_training_config(request.training_overrides)
-    pipeline_config = TrainingPipelineConfig(
-        dataset_type=request.dataset_type,
-        dataset_path=request.dataset_path,
-        model_id=request.model_id or "intent_classifier",
-    )
-    pipeline = build_training_pipeline(pipeline_config, training_config)
+    try:
+        pipeline_config = create_training_pipeline_config(
+            dataset_type=request.dataset_type,
+            dataset_path=request.dataset_path,
+            model_id=request.model_id or "intent_classifier",
+        )
+        pipeline = build_training_pipeline(pipeline_config, training_config)
+    except OptionalDependencyUnavailable as exc:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=str(exc),
+        ) from exc
 
     if request.async_run:
         background_tasks.add_task(_run_pipeline, pipeline)
@@ -62,12 +72,19 @@ async def start_hyperparameter_search(
     Launch a hyperparameter search. Executes in the background by default.
     """
     training_config = _build_training_config(request.training_overrides)
-    pipeline_config = TrainingPipelineConfig(
-        dataset_type=request.dataset_type,
-        dataset_path=request.dataset_path,
-        model_id=request.model_id or "intent_classifier",
-    )
-    optimizer = build_hyperparameter_optimizer(pipeline_config, training_config)
+    try:
+        pipeline_config = create_training_pipeline_config(
+            dataset_type=request.dataset_type,
+            dataset_path=request.dataset_path,
+            model_id=request.model_id or "intent_classifier",
+        )
+        optimizer = build_hyperparameter_optimizer(pipeline_config, training_config)
+    except OptionalDependencyUnavailable as exc:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=str(exc),
+        ) from exc
+
     job_id = f"hpo-{uuid.uuid4().hex[:8]}"
 
     if request.strategy == "random" and request.num_samples:

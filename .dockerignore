@@ -6,6 +6,8 @@ __pycache__/
 *.db
 *.log
 venv/
+.venv/
+.venv_ssp/
 .env
 .git
 .gitignore
@@ -16,4 +18,9 @@ docker-compose.yml
 .mypy_cache/
 pytest.ini
 backups/
+data/
+models/
+experiments/
+pipeline_runs/
 logs/
+Dataset/

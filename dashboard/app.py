@@ -247,7 +247,39 @@ def render_sentiment_trends():
 
 def dataset_selector(label: str = "Dataset") -> DatasetType:
     dataset_options = sorted(list(DatasetType), key=lambda dt: dt.value)
-    return st.selectbox(label, dataset_options, format_func=lambda dt: dt.value.replace("_", " ").title())
+    previous = st.session_state.get("selected_dataset")
+    selection = st.selectbox(label, dataset_options, format_func=lambda dt: dt.value.replace("_", " ").title())
+    value = getattr(selection, 'value', str(selection))
+    st.session_state["selected_dataset"] = value
+    # #region agent log
+    try:
+        log_path = Path('.cursor') / 'debug-d29e2f.log'
+        log_path.parent.mkdir(parents=True, exist_ok=True)
+        with log_path.open('a') as f:
+            import json, time as _t
+            f.write(json.dumps({
+                "sessionId": "d29e2f",
+                "hypothesisId": "DS1",
+                "location": "dashboard/app.py:dataset_selector",
+                "message": "dataset selection",
+                "data": {"selected": value, "previous": previous},
+                "timestamp": _t.time() * 1000,
+            }) + '\n')
+    except Exception:
+        pass
+    # #endregion
+    if previous is not None and previous != value:
+        try:
+            load_dataset.cache_clear()  # type: ignore[attr-defined]
+        except Exception:
+            pass
+        try:
+            load_experiments.cache_clear()  # type: ignore[attr-defined]
+        except Exception:
+            pass
+        _rerun_app()
+    return selection
+
 
 
 def _rerun_app() -> None:

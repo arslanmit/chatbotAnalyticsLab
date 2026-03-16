@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   api:
     build:
@@ -13,12 +11,14 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=sqlite:///data/chatbot_analytics.db
+      - DATABASE_URL=sqlite:////data/chatbot_analytics.db
       - DATASET_DIR=/data/Dataset
       - MODEL_CACHE_DIR=/app/models/cache
       - ALERT_CHANNELS=log
     volumes:
       - ./data:/data
+      - ./Dataset:/data/Dataset:ro
+      - ./experiments:/app/experiments
       - ./logs:/app/logs
       - ./models:/app/models
     depends_on: []
@@ -37,8 +37,11 @@ services:
     environment:
       - STREAMLIT_SERVER_HEADLESS=true
       - STREAMLIT_SERVER_PORT=8501
+      - DATASET_DIR=/data/Dataset
     volumes:
       - ./data:/data
+      - ./Dataset:/data/Dataset:ro
+      - ./experiments:/app/experiments
       - ./models:/app/models
       - ./logs:/app/logs
     depends_on:

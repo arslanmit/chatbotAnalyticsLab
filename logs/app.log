@@ -299,3 +299,86 @@ Testing dataset conversion...
 2025-10-18 12:38:40,788 - chatbot_analytics.src.services.conversation_analyzer - INFO - Analyzed dialogue flow for 200 conversations (avg_turns=1.00)
 2025-10-18 12:38:44,225 - chatbot_analytics.src.services.conversation_analyzer - INFO - Analyzed dialogue flow for 200 conversations (avg_turns=1.00)
 2025-10-18 12:39:12,086 - chatbot_analytics.src.services.sentiment_analyzer - INFO - Calculated sentiment for 13085 conversations (avg_user=-0.027, avg_assistant=0.000)
+2026-03-16 00:33:27,294 - chatbot_analytics.src.services.backup_manager - INFO - Backed up dataset BackupDataset (banking77) to /private/var/folders/t3/6j1k1r6d2qx0d74d8tbj1q1r0000gn/T/pytest-of-umitarslan/pytest-34/test_backup_and_restore0/backups/banking77/BackupDataset/20260315_233327.json
+2026-03-16 00:33:27,295 - chatbot_analytics.src.services.backup_manager - INFO - Restored dataset RestoredDataset (banking77) from /private/var/folders/t3/6j1k1r6d2qx0d74d8tbj1q1r0000gn/T/pytest-of-umitarslan/pytest-34/test_backup_and_restore0/backups/banking77/BackupDataset/20260315_233327.json
+2026-03-16 00:33:27,305 - chatbot_analytics.src.services.conversation_analyzer - INFO - Analyzed dialogue flow for 200 conversations (avg_turns=6.00)
+2026-03-16 01:28:55,836 - chatbot_analytics - INFO - Starting Chatbot Analytics System
+2026-03-16 01:28:55,836 - chatbot_analytics - INFO - Environment: development
+2026-03-16 01:28:55,837 - chatbot_analytics - INFO - Debug mode: True
+2026-03-16 01:28:55,841 - chatbot_analytics - INFO - Database initialized at sqlite:///chatbot_analytics.db
+2026-03-16 01:28:55,842 - chatbot_analytics - INFO - Created directory: data/processed
+2026-03-16 01:28:55,842 - chatbot_analytics - INFO - Created directory: data/cache
+2026-03-16 01:28:55,842 - chatbot_analytics - INFO - Created directory: models/cache
+2026-03-16 01:28:55,842 - chatbot_analytics - INFO - Created directory: logs
+2026-03-16 01:28:55,842 - chatbot_analytics - INFO - Created directory: data
+2026-03-16 01:28:55,842 - chatbot_analytics - INFO - Created directory: models
+2026-03-16 01:28:55,843 - chatbot_analytics - INFO - Application initialization complete
+2026-03-16 01:28:55,843 - chatbot_analytics - INFO - Chatbot Analytics System is ready
+2026-03-16 02:25:00,983 - chatbot_analytics - INFO - Starting Chatbot Analytics System
+2026-03-16 02:25:00,985 - chatbot_analytics - INFO - Environment: development
+2026-03-16 02:25:00,985 - chatbot_analytics - INFO - Debug mode: True
+2026-03-16 02:25:01,003 - chatbot_analytics - INFO - Database initialized at sqlite:///chatbot_analytics.db
+2026-03-16 02:25:01,004 - chatbot_analytics - INFO - Created directory: data/processed
+2026-03-16 02:25:01,004 - chatbot_analytics - INFO - Created directory: data/cache
+2026-03-16 02:25:01,004 - chatbot_analytics - INFO - Created directory: models/cache
+2026-03-16 02:25:01,004 - chatbot_analytics - INFO - Created directory: logs
+2026-03-16 02:25:01,004 - chatbot_analytics - INFO - Created directory: data
+2026-03-16 02:25:01,005 - chatbot_analytics - INFO - Created directory: models
+2026-03-16 02:25:01,005 - chatbot_analytics - INFO - Application initialization complete
+2026-03-16 02:25:01,005 - chatbot_analytics - INFO - Chatbot Analytics System is ready
+2026-03-16 02:32:09,023 - chatbot_analytics.src.services.experiment_tracker - INFO - ExperimentTracker initialized at /Users/Development/chatbotAnalyticsLab/experiments/experiments.json
+2026-03-16 02:32:16,859 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2026-03-16 02:32:16,904 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2026-03-16 02:32:16,959 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BANKING77 with 13085 conversations
+2026-03-16 02:32:17,726 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2026-03-16 02:32:17,761 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2026-03-16 02:32:17,813 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BANKING77 with 13085 conversations
+2026-03-16 02:32:19,584 - chatbot_analytics.src.services.conversation_analyzer - INFO - Analyzed dialogue flow for 200 conversations (avg_turns=1.00)
+2026-03-16 02:32:20,468 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2026-03-16 02:32:20,516 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2026-03-16 02:32:20,598 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BANKING77 with 13085 conversations
+2026-03-16 02:32:20,601 - chatbot_analytics.src.services.conversation_analyzer - INFO - Analyzed dialogue flow for 200 conversations (avg_turns=1.00)
+2026-03-16 02:32:21,802 - chatbot_analytics.src.services.sentiment_analyzer - INFO - Calculated sentiment for 13085 conversations (avg_user=-0.027, avg_assistant=0.000)
+2026-03-16 02:32:24,445 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2026-03-16 02:32:24,487 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2026-03-16 02:32:24,543 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BANKING77 with 13085 conversations
+2026-03-16 02:32:24,774 - chatbot_analytics.src.services.sentiment_analyzer - INFO - Calculated sentiment for 13085 conversations (avg_user=-0.027, avg_assistant=0.000)
+2026-03-16 02:32:34,185 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2026-03-16 02:32:34,237 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2026-03-16 02:32:34,292 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BANKING77 with 13085 conversations
+2026-03-16 02:32:35,327 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2026-03-16 02:32:35,374 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2026-03-16 02:32:35,433 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BANKING77 with 13085 conversations
+2026-03-16 02:32:38,422 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2026-03-16 02:32:38,457 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2026-03-16 02:32:38,519 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BANKING77 with 13085 conversations
+2026-03-16 02:32:41,100 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2026-03-16 02:32:41,144 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2026-03-16 02:32:41,200 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BANKING77 with 13085 conversations
+2026-03-16 02:32:45,670 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2026-03-16 02:32:45,719 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2026-03-16 02:32:45,777 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BANKING77 with 13085 conversations
+2026-03-16 02:33:37,343 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2026-03-16 02:33:37,384 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2026-03-16 02:33:37,439 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BANKING77 with 13085 conversations
+2026-03-16 02:39:56,395 - chatbot_analytics.src.services.conversation_analyzer - INFO - Analyzed dialogue flow for 200 conversations (avg_turns=1.00)
+2026-03-16 02:40:01,962 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2026-03-16 02:40:02,019 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2026-03-16 02:40:02,073 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BANKING77 with 13085 conversations
+2026-03-16 02:40:02,076 - chatbot_analytics.src.services.conversation_analyzer - INFO - Analyzed dialogue flow for 200 conversations (avg_turns=1.00)
+2026-03-16 02:40:07,820 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2026-03-16 02:40:07,859 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2026-03-16 02:40:07,915 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BANKING77 with 13085 conversations
+2026-03-16 02:40:07,919 - chatbot_analytics.src.services.conversation_analyzer - INFO - Analyzed dialogue flow for 200 conversations (avg_turns=1.00)
+2026-03-16 02:40:11,101 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2026-03-16 02:40:11,142 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2026-03-16 02:40:11,260 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BANKING77 with 13085 conversations
+2026-03-16 02:40:11,263 - chatbot_analytics.src.services.conversation_analyzer - INFO - Analyzed dialogue flow for 200 conversations (avg_turns=1.00)
+2026-03-16 02:40:41,399 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2026-03-16 02:40:41,440 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2026-03-16 02:40:41,495 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BANKING77 with 13085 conversations
+2026-03-16 02:40:41,498 - chatbot_analytics.src.services.conversation_analyzer - INFO - Analyzed dialogue flow for 200 conversations (avg_turns=1.00)
+2026-03-16 02:41:06,048 - chatbot_analytics.src.repositories.dataset_loaders - WARNING - Could not load intent labels: Expecting value: line 9 column 1 (char 8). Using numeric labels.
+2026-03-16 02:41:06,095 - chatbot_analytics.src.repositories.dataset_loaders - INFO - Loaded 13085 conversations from BANKING77 dataset
+2026-03-16 02:41:06,148 - chatbot_analytics.src.services.data_preprocessor - INFO - Preprocessed dataset BANKING77 with 13085 conversations
+2026-03-16 02:41:06,151 - chatbot_analytics.src.services.conversation_analyzer - INFO - Analyzed dialogue flow for 200 conversations (avg_turns=1.00)

@@ -4,7 +4,7 @@ Intent classification endpoints.
 
 from fastapi import APIRouter, HTTPException, status
 
-from src.api.dependencies import get_intent_classifier
+from src.api.dependencies import OptionalDependencyUnavailable, get_intent_classifier
 from src.api.schemas.intents import (
     IntentQuery,
     BatchIntentQuery,
@@ -27,6 +27,11 @@ async def predict_intent(query: IntentQuery) -> IntentPredictionResponse:
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Model '{query.model_id}' not found. Train and register the model before prediction.",
         )
+    except OptionalDependencyUnavailable as exc:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=str(exc),
+        ) from exc
 
     prediction = classifier.predict(query.text)
     return IntentPredictionResponse(
@@ -48,6 +53,11 @@ async def predict_intent_batch(request: BatchIntentQuery) -> BatchIntentPredicti
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Model '{request.model_id}' not found. Train and register the model before prediction.",
         )
+    except OptionalDependencyUnavailable as exc:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=str(exc),
+        ) from exc
 
     predictions = classifier.predict_batch(request.texts)
     return BatchIntentPredictionResponse(
